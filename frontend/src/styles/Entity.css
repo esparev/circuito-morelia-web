@@ -1,0 +1,35 @@
+@import './Vars.css';
+
+.entity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 0.5px solid var(--gray-100);
+}
+.entity__container {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+.entity__info--title {
+  font-size: 2rem;
+  font-weight: var(--semibold);
+  color: var(--black);
+}
+.entity__route-info {
+  display: flex;
+  column-gap: 4px;
+}
+.entity__route-info--txt {
+  font-size: 1.6rem;
+  font-weight: var(--regular);
+  color: var(--gray-200);
+}
+.entity__button {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  font-size: 1.4rem;
+  font-weight: var(--regular);
+}

@@ -1,0 +1,49 @@
+@import './Vars.css';
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.page__header--left {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+.page__header--title {
+  font-size: 3.2rem;
+  font-weight: var(--bold);
+  color: var(--black);
+}
+.page__filters {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  font-size: 1.6rem;
+}
+.page__filters--lbl {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.page__filters--txt {
+  font-weight: var(--semibold);
+  color: var(--black);
+}
+.filters__button {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--gray-100);
+  border-radius: 20px;
+}
+.filters__button--txt {
+  color: var(--gray-300);
+}
+.page__header--right {
+  display: flex;
+  column-gap: 12px;
+}

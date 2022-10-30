@@ -1,0 +1,27 @@
+@import './Vars.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 68px;
+}
+.header__figure--img {
+  height: 40px;
+}
+.menu {
+  display: flex;
+  column-gap: 40px;
+  align-items: center;
+}
+.menu__item {
+  list-style: none;
+}
+.menu__item a {
+  font-size: 1.6rem;
+  font-weight: var(--medium);
+  color: var(--gray-300);
+}
+.menu__item a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+@import './Vars.css';
+
+.crud-button {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  padding: 8px 28px;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  font-weight: var(--semibold);
+}
+.crud-button--black {
+  color: var(--white);
+  background-color: var(--black);
+}
+.crud-button--red {
+  color: var(--white);
+  background-color: var(--red-100);
+}
