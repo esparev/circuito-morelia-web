@@ -18,17 +18,45 @@
   </head>
   <body>
     <header class="header">
-      <figure class="header__figure">
-        <a href="./index.html">
-          <img
-            class="header__figure--img"
-            src="../assets/imgs/Circuito_Morelia_Logo.png"
-            alt="Logo Circuito Morelia"
-          />
-        </a>
-      </figure>
+      <div class="header__buttons">
+        <figure class="header__figure">
+          <a href="./index.html">
+            <img
+              class="header__figure--img"
+              src="../assets/imgs/Circuito_Morelia_Logo.png"
+              alt="Logo Circuito Morelia"
+            />
+          </a>
+        </figure>
 
-      <ul class="menu">
+        <!-- Mobile menu button -->
+        <div class="header__mobile-btn">
+          <button
+            class="header__hamburger"
+            type="button"
+            aria-label="Toggle menu"
+            id="nav-toggle"
+          >
+            <svg
+              class="header__hamburger--btn ham hamRotate ham1"
+              viewBox="0 0 100 100"
+              onclick="this.classList.toggle('active')"
+            >
+              <path
+                class="line top"
+                d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40"
+              />
+              <path class="line middle" d="m 30,50 h 40" />
+              <path
+                class="line bottom"
+                d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <ul class="menu" id="menu">
         <li class="menu__item">
           <a href="">Paradas</a>
         </li>
@@ -42,7 +70,7 @@
           <a href="">Perfil</a>
         </li>
         <li class="menu__item">
-          <a href="" title="Cerrar sesión">
+          <a class="menu__logout--svg" href="" title="Cerrar sesión">
             <svg
               class="icon--24 icon--gray"
               width="72"
@@ -64,6 +92,30 @@
                 stroke-linejoin="round"
               />
             </svg>
+          </a>
+          <a class="crud-button crud-button--black menu__logout--btn" href="">
+            <svg
+              class="icon--16 icon--white"
+              width="72"
+              height="72"
+              viewBox="0 0 72 72"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M45 9H17C15.8954 9 15 9.89543 15 11V61C15 62.1046 15.8954 63 17 63H45"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M57 36L45 24M57 36L45 48M57 36H27"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Cerrar sesión
           </a>
         </li>
       </ul>
@@ -93,6 +145,78 @@
               <p class="page__filters--txt">Filtrar:</p>
             </div>
 
+            <a class="filters__button" href="">
+              <svg
+                class="icon--20 icon--gray"
+                width="72"
+                height="72"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M36 36C42.6274 36 48 30.6274 48 24C48 17.3726 42.6274 12 36 12C29.3726 12 24 17.3726 24 24C24 30.6274 29.3726 36 36 36ZM36 36V60"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="filters__button--txt">Paradas</p>
+            </a>
+            <a class="filters__button" href="">
+              <svg
+                class="icon--20 icon--gray"
+                width="72"
+                height="72"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M36 36C42.6274 36 48 30.6274 48 24C48 17.3726 42.6274 12 36 12C29.3726 12 24 17.3726 24 24C24 30.6274 29.3726 36 36 36ZM36 36V60"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="filters__button--txt">Paradas</p>
+            </a>
+            <a class="filters__button" href="">
+              <svg
+                class="icon--20 icon--gray"
+                width="72"
+                height="72"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M36 36C42.6274 36 48 30.6274 48 24C48 17.3726 42.6274 12 36 12C29.3726 12 24 17.3726 24 24C24 30.6274 29.3726 36 36 36ZM36 36V60"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="filters__button--txt">Paradas</p>
+            </a>
+            <a class="filters__button" href="">
+              <svg
+                class="icon--20 icon--gray"
+                width="72"
+                height="72"
+                viewBox="0 0 72 72"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M36 36C42.6274 36 48 30.6274 48 24C48 17.3726 42.6274 12 36 12C29.3726 12 24 17.3726 24 24C24 30.6274 29.3726 36 36 36ZM36 36V60"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="filters__button--txt">Paradas</p>
+            </a>
             <a class="filters__button" href="">
               <svg
                 class="icon--20 icon--gray"
@@ -200,7 +324,7 @@
             </div>
           </div>
           <a class="entity__button" href="">
-            Ver en mapa
+            <span>Ver en mapa</span>
             <svg
               class="icon--20 icon--black"
               width="72"
@@ -264,7 +388,7 @@
             </div>
           </div>
           <a class="entity__button" href="">
-            Ver en mapa
+            <span>Ver en mapa</span>
             <svg
               class="icon--20 icon--black"
               width="72"
@@ -328,7 +452,7 @@
             </div>
           </div>
           <a class="entity__button" href="">
-            Ver en mapa
+            <span>Ver en mapa</span>
             <svg
               class="icon--20 icon--black"
               width="72"
@@ -392,7 +516,7 @@
             </div>
           </div>
           <a class="entity__button" href="">
-            Ver en mapa
+            <span>Ver en mapa</span>
             <svg
               class="icon--20 icon--black"
               width="72"
@@ -456,7 +580,7 @@
             </div>
           </div>
           <a class="entity__button" href="">
-            Ver en mapa
+            <span>Ver en mapa</span>
             <svg
               class="icon--20 icon--black"
               width="72"
@@ -497,5 +621,18 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      const navToggle = document.querySelector('#nav-toggle');
+      const menu = document.querySelector('#menu');
+
+      navToggle.addEventListener('click', () => {
+        menu.classList.toggle('menu--visibility');
+      });
+
+      if (screen.width < 768) {
+        menu.classList.toggle('menu--visibility');
+      }
+    </script>
   </body>
 </html>

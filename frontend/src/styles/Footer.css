@@ -19,3 +19,16 @@
   font-size: 1.6rem;
   color: var(--black);
 }
+
+@media (max-width: 768px) {
+  .footer {
+    row-gap: 32px;
+    padding: 20px;
+  }
+  .footer__figure--img {
+    height: 32px;
+  }
+  .footer__info {
+    font-size: 1.2rem;
+  }
+}

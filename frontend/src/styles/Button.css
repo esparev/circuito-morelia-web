@@ -17,3 +17,10 @@
   color: var(--white);
   background-color: var(--red-100);
 }
+
+@media (max-width: 768px) {
+  .crud-button {
+    padding: 8px;
+    font-size: 1.2rem;
+  }
+}

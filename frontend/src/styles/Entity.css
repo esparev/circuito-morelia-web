@@ -33,3 +33,18 @@
   font-size: 1.4rem;
   font-weight: var(--regular);
 }
+
+@media (max-width: 768px) {
+  .entity__info--title {
+    font-size: 1.6rem;
+  }
+  .entity__route-info {
+    flex-wrap: wrap;
+  }
+  .entity__route-info--txt {
+    font-size: 1.2rem;
+  }
+  .entity__button span {
+    display: none;
+  }
+}
