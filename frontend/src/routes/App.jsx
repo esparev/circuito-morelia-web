@@ -11,6 +11,7 @@ import Driver from '@containers/Driver';
 import Units from '@containers/Units';
 import Unit from '@containers/Unit';
 import Stops from '@containers/Stops';
+import Profile from '@containers/Profile';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='unidades' element={<Units />} />
           <Route path='unidades/:slug' element={<Unit />} />
           <Route path='paradas' element={<Stops />} />
+          <Route path='perfil' element={<Profile />} />
           <Route path='inicia-sesion' element={<Login />} />
           <Route path='crear-cuenta' element={<Signup />} />
         </Routes>
