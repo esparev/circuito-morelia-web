@@ -13,20 +13,20 @@ import Unit from '@containers/Unit';
 import Stops from '@containers/Stops';
 import Profile from '@containers/Profile';
 
-const App = () => {
+const App = ({ isLogged }) => {
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout isLogged={isLogged}>
         <Routes>
-          <Route index element={<Home />} />
-          <Route path='admins' element={<Admins />} />
-          <Route path='admins/:slug' element={<Admin />} />
-          <Route path='conductores' element={<Drivers />} />
-          <Route path='conductores/:slug' element={<Driver />} />
-          <Route path='unidades' element={<Units />} />
-          <Route path='unidades/:slug' element={<Unit />} />
-          <Route path='paradas' element={<Stops />} />
-          <Route path='perfil' element={<Profile />} />
+          <Route path='/' element={isLogged ? <Home /> : <Login />} />
+          <Route path='admins' element={isLogged ? <Admins /> : <Login />} />
+          <Route path='admins/:slug' element={isLogged ? <Admin /> : <Login />} />
+          <Route path='conductores' element={isLogged ? <Drivers /> : <Login />} />
+          <Route path='conductores/:slug' element={isLogged ? <Driver /> : <Login />} />
+          <Route path='unidades' element={isLogged ? <Units /> : <Login />} />
+          <Route path='unidades/:slug' element={isLogged ? <Unit /> : <Login />} />
+          <Route path='paradas' element={isLogged ? <Stops /> : <Login />} />
+          <Route path='perfil' element={isLogged ? <Profile /> : <Login />} />
           <Route path='inicia-sesion' element={<Login />} />
           <Route path='crear-cuenta' element={<Signup />} />
         </Routes>

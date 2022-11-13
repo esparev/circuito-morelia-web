@@ -1,9 +1,18 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import CircuitoMorelia from '@img/Circuito_Morelia.png';
 import '@styles/Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const login = (e) => {
+    e.preventDefault();
+    localStorage.setItem('id', 1);
+    navigate('/');
+    window.location.reload();
+  };
+
   useEffect(() => {
     const sendButton = document.querySelector('#send-btn');
     sendButton.addEventListener('click', validateForm);
@@ -26,7 +35,7 @@ const Login = () => {
       emailFieldErr.classList.add('login__form-field--err');
       emailFieldErr.classList.remove('login__form-field--success');
       emailFieldErr.innerText = 'Ingrese un correo válido';
-    }else {
+    } else {
       emailFieldErr.classList.add('login__form-field--success');
       emailFieldErr.classList.remove('login__form-field--err');
       emailFieldErr.innerText = '¡Correcto!';
@@ -43,7 +52,7 @@ const Login = () => {
     }
 
     if (emailField.value !== '' && passwordField.value !== '') {
-      // sendMessage(e);
+      login(e);
     }
   }
 
