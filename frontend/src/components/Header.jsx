@@ -70,7 +70,7 @@ const Header = () => {
           <Link to='/perfil'>Perfil</Link>
         </li>
         <li className='menu__item'>
-          <Link className='menu__logout--svg' to='/incia-sesion' title='Cerrar sesión'>
+          <Link className='menu__logout--svg' to='/inicia-sesion' title='Cerrar sesión'>
             <svg
               className='icon--24 icon--gray'
               width='72'
