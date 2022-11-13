@@ -7,6 +7,9 @@
   padding: 8px 0;
   border-bottom: 0.5px solid var(--gray-100);
 }
+.entity:last-child {
+  border-bottom: none;
+}
 .entity__container {
   display: flex;
   align-items: center;
