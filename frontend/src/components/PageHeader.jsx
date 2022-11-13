@@ -191,7 +191,11 @@ const PageHeader = (props) => {
             </>
           ) : (
             <>
-              <button className='filter__chip' type='button' value='onService'>
+              <button
+                className='filter__chip'
+                type='button'
+                value='onService'
+                onClick={handleToggle}>
                 <svg
                   className='icon--20 icon--gray'
                   width='72'
@@ -221,7 +225,11 @@ const PageHeader = (props) => {
 
                 <p className='filter__chip--txt'>En Ruta</p>
               </button>
-              <button className='filter__chip' type='button' value='noService'>
+              <button
+                className='filter__chip'
+                type='button'
+                value='noService'
+                onClick={handleToggle}>
                 <svg
                   className='icon--20 icon--gray'
                   width='72'
@@ -257,7 +265,11 @@ const PageHeader = (props) => {
 
                 <p className='filter__chip--txt'>Fuera de Servicio</p>
               </button>
-              <button className='filter__chip' type='button' value='outboundRoute'>
+              <button
+                className='filter__chip'
+                type='button'
+                value='outboundRoute'
+                onClick={handleToggle}>
                 <svg
                   className='icon--20 icon--gray'
                   width='72'
@@ -275,7 +287,11 @@ const PageHeader = (props) => {
 
                 <p className='filter__chip--txt'>Ruta de Ida</p>
               </button>
-              <button className='filter__chip' type='button' value='returnRoute'>
+              <button
+                className='filter__chip'
+                type='button'
+                value='returnRoute'
+                onClick={handleToggle}>
                 <svg
                   className='icon--20 icon--gray'
                   width='72'
