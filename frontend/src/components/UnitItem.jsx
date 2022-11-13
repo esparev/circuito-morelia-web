@@ -2,7 +2,7 @@ import React from 'react';
 import '@styles/Entity.css';
 
 const UnitItem = (props) => {
-  const { unitNumber, onRoute, location } = props;
+  const { number, onRoute, location } = props;
 
   return (
     <div className='entity'>
@@ -40,7 +40,7 @@ const UnitItem = (props) => {
         </svg>
 
         <div className='entity__info'>
-          <h3 className='entity__info--title'>Unidad {unitNumber}</h3>
+          <h3 className='entity__info--title'>Unidad {number}</h3>
           {onRoute ? (
             <div className='entity__route-info'>
               <p className='entity__route-info--txt'>En ruta</p>
