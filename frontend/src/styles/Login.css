@@ -1,0 +1,111 @@
+@import './Vars.css';
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  margin: 20px auto;
+}
+.login__figure {
+  width: 60px;
+  height: 60px;
+}
+.login__figure--img {
+  width: 60px;
+  height: 60px;
+}
+.login--title {
+  font-size: 4rem;
+}
+.login--txt {
+  font-size: 1.6rem;
+  font-weight: var(--regular);
+  color: var(--gray-200);
+}
+.login__form {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: flex-end;
+}
+.login__form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+.login__form-field--lbl {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: var(--semibold);
+  color: var(--black);
+}
+.login__form-field--input {
+  width: 100%;
+  padding: 8px;
+  border: 1.5px solid var(--gray-100);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: var(--regular);
+  font-size: 1.6rem;
+}
+.login__form-field--input:focus {
+  outline: solid var(--black);
+}
+.login__form-field--err {
+  font-size: 1.6rem;
+  font-weight: var(--medium);
+  color: var(--red-100);
+}
+.login__form-field--success {
+  font-size: 1.6rem;
+  font-weight: var(--medium);
+  color: var(--black);
+}
+.login__form--forgot {
+  border-bottom: 1.5px solid var(--white);
+  font-size: 1.6rem;
+  font-weight: var(--medium);
+  color: var(--red-100);
+}
+.login__form--forgot:hover {
+  border-bottom: 1.5px solid var(--red-100);
+}
+.login__form--btn {
+  width: 100%;
+  padding: 2px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: var(--semibold);
+  background-color: var(--black);
+  color: var(--white);
+}
+.login__form--btn:hover {
+  cursor: pointer;
+}
+.login__form--question {
+  font-size: 1.6rem;
+  font-weight: var(--medium);
+  text-align: end;
+  color: var(--gray-300);
+}
+.login__form--question-btn {
+  font-weight: var(--semibold);
+  border-bottom: 1.5px solid var(--white);
+  color: var(--black);
+}
+.login__form--question-btn:hover {
+  border-bottom: 1.5px solid var(--black);
+}
+
+@media (max-width: 768px) {
+  .login {
+    margin: 20px;
+  }
+}

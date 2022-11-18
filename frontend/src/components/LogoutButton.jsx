@@ -10,8 +10,7 @@ const LogoutButton = () => {
         height='72'
         viewBox='0 0 72 72'
         fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
+        xmlns='http://www.w3.org/2000/svg'>
         <path
           d='M45 9H17C15.8954 9 15 9.89543 15 11V61C15 62.1046 15.8954 63 17 63H45'
           strokeWidth='6'

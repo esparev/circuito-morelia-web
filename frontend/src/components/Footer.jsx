@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import LogoCircuito from '@img/Circuito_Morelia_Logo.png';
 import '@styles/Footer.css';
 
@@ -6,13 +7,9 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <figure className='footer__figure'>
-        <a href='./index.html'>
-          <img
-            className='footer__figure--img'
-            src={LogoCircuito}
-            alt='Logo Circuito Morelia'
-          />
-        </a>
+        <Link to='/'>
+          <img className='footer__figure--img' src={LogoCircuito} alt='Logo Circuito Morelia' />
+        </Link>
       </figure>
 
       <div className='footer__info'>
