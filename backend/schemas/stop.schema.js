@@ -10,14 +10,12 @@ const getStopSchema = Joi.object({
 });
 
 const createStopSchema = Joi.object({
-	id: id.required(),
 	latitude: latitude.required(),
 	longitude: longitude.required(),
 	wayDirection: wayDirection.required(),
 });
 
 const updateStopSchema = Joi.object({
-	id,
 	latitude,
 	longitude,
 	wayDirection,

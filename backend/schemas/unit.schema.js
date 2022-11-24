@@ -13,17 +13,15 @@ const getUnitSchema = Joi.object({
 });
 
 const createUnitSchema = Joi.object({
-	id: id.required(),
 	number: number.required(),
 	wayDirection: wayDirection.required(),
 	distanceInMins: distanceInMins.required(),
 	distanceInMts: distanceInMts.required(),
-	departureTime: departureTime.required(),
-	arrivalTime: arrivalTime.required(),
+	departureTime,
+	arrivalTime,
 });
 
 const updateUnitSchema = Joi.object({
-	id,
 	number,
 	wayDirection,
 	distanceInMins,
