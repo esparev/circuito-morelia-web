@@ -20,7 +20,7 @@ const {
  */
 router.get('/', async (req, res, next) => {
 	try {
-		const users = service.find();
+		const users = await service.find();
 		res.status(200).json(users);
 	} catch (error) {
 		next(error);

@@ -21,8 +21,8 @@ const {
  */
 router.get('/', async (req, res, next) => {
 	try {
-		const stops = service.find();
-		res.json(stops);
+		const stops = await service.find();
+		res.status(200).json(stops);
 	} catch (error) {
 		next(error);
 	}
