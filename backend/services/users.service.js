@@ -16,22 +16,24 @@ class UsersService {
 		const users = await models.User.findAll();
 		return users;
 	}
-/**
+
+	/**
 	 * Encuentra el usuario con el email proporcionado
 	 * @param {string} email - email del usuario
 	 * @returns {Object} - Objeto con el usuario encontrado
 	 */
- async findByEmail(email) {
-	const user = await models.User.findOne({
-		where: { email },
-	});
+	async findByEmail(email) {
+		const user = await models.User.findOne({
+			where: { email },
+		});
 
-	if (!user) {
-		throw boom.notFound('usuario no encontrado');
+		if (!user) {
+			throw boom.notFound('usuario no encontrado');
+		}
+
+		return user;
 	}
 
-	return user;
-}
 	/**
 	 * Encuentra el usuario con el id proporcionado
 	 * @param {number} id - id del usuario
@@ -43,9 +45,6 @@ class UsersService {
 		if (!user) {
 			throw boom.notFound('usuario no encontrado');
 		}
-		if (user.role === 'hero') {
-			throw boom.unauthorized('No esta permitido esta accion');
-		}
 		return user;
 	}
 
@@ -55,12 +54,8 @@ class UsersService {
 	 * @param {*} data - datos del usuario
 	 * @returns {Object} - Objeto con el usuario creado
 	 */
-	 async createUser(data) {
+	async createUser(data) {
 		const hash = await bcrypt.hash(data.password, 13);
-
-		if (data.role === 'admin') {
-			throw boom.unauthorized('No esta permitido esta accion');
-		}
 
 		const newUser = await models.User.create({
 			...data,
@@ -79,8 +74,12 @@ class UsersService {
 	 * @param {*} data - datos del admin
 	 * @returns {Object} - Objeto con el admin creado
 	 */
-	 async createAdmin(data) {
+	async createAdmin(data) {
 		const hash = await bcrypt.hash(data.password, 13);
+
+		if (data.role !== 'hero' || data.role !== 'hero') {
+			throw boom.unauthorized('No esta permitido esta accion');
+		}
 
 		const newAdmin = await models.User.create({
 			...data,
