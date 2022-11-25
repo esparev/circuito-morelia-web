@@ -26,27 +26,27 @@ const UserSchema = {
 	slug: {
 		allowNull: false,
 		unique: true,
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING,
 	},
 	name: {
 		allowNull: false,
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING,
 	},
 	email: {
 		allowNull: false,
 		unique: true,
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING,
 		validate: {
 			isEmail: true,
 		},
 	},
 	password: {
 		allowNull: false,
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING,
 	},
 	role: {
 		allowNull: false,
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING,
 		defaultValue: 'user',
 		validate: {
 			isHero(value) {
