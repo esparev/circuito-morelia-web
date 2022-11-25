@@ -19,14 +19,18 @@ const StopSchema = {
 		primaryKey: true,
 		type: DataTypes.INTEGER,
 	},
+	name: {
+		allowNull: false,
+		type: DataTypes.STRING,
+	},
 	latitude: {
 		allowNull: false,
 		unique: true,
-		type: DataTypes.DECIMAL(10, 8),
+		type: DataTypes.DECIMAL(8, 6),
 	},
 	longitude: {
 		allowNull: false,
-		type: DataTypes.DECIMAL(10, 8),
+		type: DataTypes.DECIMAL(9, 6),
 	},
 	wayDirection: {
 		allowNull: false,
