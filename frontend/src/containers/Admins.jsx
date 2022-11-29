@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import AddAdminModal from '@components/AddAdminModal';
 import PageHeader from '@components/PageHeader';
 import AdminItem from '@components/AdminItem';
 import useGetUsers from '@hooks/useGetUsers';
 import { envConfig } from '@config';
+import '@styles/Entities.css';
 
 const Admins = () => {
   const users = useGetUsers(envConfig.apiUrl);
@@ -13,9 +15,19 @@ const Admins = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const showModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('modal--show');
+  };
+
   return (
     <>
-      <PageHeader title='Administradores' entityName='Administrador' isAddable />
+      <PageHeader
+        title='Administradores'
+        entityName='Administrador'
+        isAddable
+        onClick={showModal}
+      />
 
       <main className='hero'>
         <div className='entities__list'>
@@ -30,6 +42,8 @@ const Admins = () => {
           ))}
         </div>
       </main>
+
+      <AddAdminModal />
     </>
   );
 };

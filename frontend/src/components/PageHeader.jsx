@@ -5,7 +5,7 @@ import DeleteButton from '@components/DeleteButton';
 import '@styles/PageHeader.css';
 
 const PageHeader = (props) => {
-  const { title, isHomePage, isFilter, isAddable, entityName, isSingleEntity } = props;
+  const { title, isHomePage, isFilter, isAddable, entityName, isSingleEntity, onClick } = props;
 
   const handleToggle = (e) => {
     const chip = document.querySelector(`[value=${e.currentTarget.getAttribute('value')}]`);
@@ -360,7 +360,7 @@ const PageHeader = (props) => {
                 <DeleteButton entityName={entityName} />
               </>
             ) : (
-              <>{isAddable ? <AddButton entityName={entityName} /> : null}</>
+              <>{isAddable ? <AddButton entityName={entityName} onClick={onClick} /> : null}</>
             )}
           </>
         ) : null}

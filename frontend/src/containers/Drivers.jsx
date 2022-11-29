@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import AddDriverModal from '@components/AddDriverModal';
 import PageHeader from '@components/PageHeader';
 import DriverItem from '@components/DriverItem';
 import useGetUsers from '@hooks/useGetUsers';
 import { envConfig } from '@config';
+import '@styles/Entities.css';
 
 const Drivers = () => {
   // const drivers = [
@@ -71,23 +73,36 @@ const Drivers = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const showModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('modal--show');
+  };
+
   return (
     <>
-      <PageHeader title='Conductores' entityName='Conductor' isFilter isAddable />
+      <PageHeader
+        title='Conductores'
+        entityName='Conductor'
+        isFilter
+        isAddable
+        onClick={showModal}
+      />
 
       <main className='hero'>
         <div className='entities__list'>
           {drivers.map((driver) => (
             <DriverItem
-              key={driver.unitNumber}
+              key={driver.id}
               name={driver.name}
-              unitNumber={driver.unitNumber}
-              onRoute={driver.onRoute}
-              location={driver.location}
+              // unitNumber={driver.unitNumber}
+              // onRoute={driver.onRoute}
+              // location={driver.location}
             />
           ))}
         </div>
       </main>
+
+      <AddDriverModal />
     </>
   );
 };

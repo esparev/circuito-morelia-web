@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AddUnitModal from '@components/AddUnitModal';
 import PageHeader from '@components/PageHeader';
 import UnitItem from '@components/UnitItem';
 import useGetUnits from '@hooks/useGetUnits';
@@ -64,9 +65,14 @@ const Units = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const showModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('modal--show');
+  };
+
   return (
     <>
-      <PageHeader title='Unidades' entityName='Unidad' isFilter isAddable />
+      <PageHeader title='Unidades' entityName='Unidad' isFilter isAddable onClick={showModal} />
 
       <main className='hero'>
         <div className='entities__list'>
@@ -80,6 +86,8 @@ const Units = () => {
           ))}
         </div>
       </main>
+
+      <AddUnitModal />
     </>
   );
 };
