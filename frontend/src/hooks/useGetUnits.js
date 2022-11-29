@@ -14,7 +14,7 @@ const useGetUnits = (API) => {
       const response = await axios(`${API}/units`);
       setUnits(response.data);
     }
-    fetchData;
+    fetchData();
   }, []);
 
   return units;

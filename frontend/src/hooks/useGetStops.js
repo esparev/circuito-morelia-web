@@ -14,7 +14,7 @@ const useGetStops = (API) => {
       const response = await axios(`${API}/stops`);
       setStops(response.data);
     }
-    fetchData;
+    fetchData();
   }, []);
 
   return stops;

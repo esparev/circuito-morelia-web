@@ -14,7 +14,7 @@ const useGetUsers = (API) => {
       const response = await axios(`${API}/users`);
       setUsers(response.data);
     }
-    fetchData;
+    fetchData();
   }, []);
 
   return users;
