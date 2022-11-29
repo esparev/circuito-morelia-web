@@ -12,7 +12,6 @@ module.exports = {
 				password:
 					'$2b$13$oP9JNy3eHStLEdrTc9KDR.sMz9R2cwntXEFR0Yc3AwT3yhMswtbuO',
 				role: 'hero',
-				image: '',
 			},
 			{
 				slug: 'lpaz',
@@ -21,7 +20,6 @@ module.exports = {
 				password:
 					'$2b$13$oP9JNy3eHStLEdrTc9KDR.sMz9R2cwntXEFR0Yc3AwT3yhMswtbuO',
 				role: 'hero',
-				image: '',
 			},
 			{
 				slug: 'eljhonnyx',
@@ -30,7 +28,6 @@ module.exports = {
 				password:
 					'$2b$13$oP9JNy3eHStLEdrTc9KDR.sMz9R2cwntXEFR0Yc3AwT3yhMswtbuO',
 				role: 'hero',
-				image: '',
 			},
 		]);
 	},
