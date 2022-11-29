@@ -10,6 +10,7 @@ const {
 	getUnitSchema,
 	createUnitSchema,
 	updateUnitSchema,
+	addDriverSchema,
 } = require('../schemas/unit.schema');
 
 /**
@@ -65,6 +66,28 @@ router.post(
 			const body = req.body;
 			const newUnit = await service.create(body);
 			res.status(201).json({ newUnit, message: 'unidad creada' });
+		} catch (error) {
+			next(error);
+		}
+	}
+);
+
+/**
+ * Ruta de asignar conductor a unidad
+ * @api {post} /units Asignar conductor
+ * @apiName AsignarConductor
+ * @apiGroup Unidades
+ * @apiSuccess {Object} Conductor asignado
+ */
+router.post(
+	'/add-driver',
+	passport.authenticate('jwt', { session: false }),
+	validatorHandler(addDriverSchema, 'body'),
+	async (req, res, next) => {
+		try {
+			const body = req.body;
+			const newDriver = await service.addDriver(body);
+			res.status(201).json({ newDriver, message: 'conductor asignado' });
 		} catch (error) {
 			next(error);
 		}

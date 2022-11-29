@@ -22,7 +22,9 @@ class UnitsService {
 	 * @returns {Object} - Objeto con la unidad
 	 */
 	async findOne(id) {
-		const unit = await models.Unit.findByPk(id);
+		const unit = await models.Unit.findByPk(id, {
+			include: ['driver'],
+		});
 
 		if (!unit) {
 			throw boom.notFound('unidad no encontrada');
@@ -39,6 +41,16 @@ class UnitsService {
 	async create(data) {
 		const newUnit = await models.Unit.create(data);
 		return newUnit;
+	}
+
+	/**
+	 * Asigna un conductor con los datos proporcionados
+	 * @param {*} data - id del conductor y la unidad
+	 * @returns {Object} - Objeto con el conductor asignado
+	 */
+	async addDriver(data) {
+		const newDriver = await models.UnitDriver.create(data);
+		return newDriver;
 	}
 
 	/**

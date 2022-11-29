@@ -7,6 +7,7 @@ const distanceInMins = Joi.number().integer().min(1);
 const distanceInMts = Joi.number().integer().min(1);
 const departureTime = Joi.date().timestamp();
 const arrivalTime = Joi.date().timestamp();
+const driverId = Joi.number().integer().min(1);
 
 const getUnitSchema = Joi.object({
 	id: id.required(),
@@ -30,4 +31,14 @@ const updateUnitSchema = Joi.object({
 	arrivalTime,
 });
 
-module.exports = { getUnitSchema, createUnitSchema, updateUnitSchema };
+const addDriverSchema = Joi.object({
+	unitId: id.required(),
+	driverId: driverId.required(),
+});
+
+module.exports = {
+	getUnitSchema,
+	createUnitSchema,
+	updateUnitSchema,
+	addDriverSchema,
+};
