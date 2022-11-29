@@ -12,7 +12,7 @@ const Header = (props) => {
 
   const logout = () => {
     setMenu(false);
-    localStorage.removeItem('id');
+    localStorage.clear();
   };
 
   const handleToggle = () => {
@@ -113,7 +113,7 @@ const Header = (props) => {
                 />
               </svg>
             </Link>
-            <LogoutButton />
+            <LogoutButton onClick={logout} />
           </li>
         </ul>
       ) : null}

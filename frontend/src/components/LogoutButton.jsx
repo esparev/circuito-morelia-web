@@ -1,9 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '@styles/Button.css';
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
+  const { onClick } = props;
+
   return (
-    <a className='crud-button crud-button--black menu__logout--btn' href=''>
+    <Link
+      className='crud-button crud-button--black menu__logout--btn'
+      to='inicia-sesion'
+      onClick={onClick}>
       <svg
         className='icon--16 icon--white'
         width='72'
@@ -25,7 +31,7 @@ const LogoutButton = () => {
         />
       </svg>
       Cerrar sesión
-    </a>
+    </Link>
   );
 };
 

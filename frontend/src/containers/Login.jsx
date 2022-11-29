@@ -1,26 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { envConfig } from '@config';
 import CircuitoMorelia from '@img/Circuito_Morelia.png';
 import '@styles/Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const login = (e) => {
-    e.preventDefault();
-    localStorage.setItem('id', 1);
-    navigate('/');
-    window.location.reload();
+  const [form, setValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInput = (event) => {
+    validateForm();
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  useEffect(() => {
-    const sendButton = document.querySelector('#send-btn');
-    sendButton.addEventListener('click', validateForm);
-  }, []);
+  const login = async (url, data) => {
+    await axios
+      .post(url, data)
+      .then((res) => {
+        const user = res.data.user;
 
-  function validateForm(e) {
-    e.preventDefault();
+        localStorage.setItem('id', user.id);
+        localStorage.setItem('name', user.name);
+        localStorage.setItem('email', user.email);
+        localStorage.setItem('image', user.image);
+        localStorage.setItem('role', user.role);
+        localStorage.setItem('token', res.data.token);
 
+        // navigate('/');
+        window.location.href = '/';
+      })
+      .catch((error) => {
+        if (error) {
+          //! const wrongLogin
+        }
+      });
+  };
+
+  const validateForm = () => {
     const validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const emailField = document.querySelector('#email');
     const passwordField = document.querySelector('#password');
@@ -36,9 +60,8 @@ const Login = () => {
       emailFieldErr.classList.remove('login__form-field--success');
       emailFieldErr.innerText = 'Ingrese un correo válido';
     } else {
-      emailFieldErr.classList.add('login__form-field--success');
       emailFieldErr.classList.remove('login__form-field--err');
-      emailFieldErr.innerText = '¡Correcto!';
+      emailFieldErr.innerText = '';
     }
 
     if (passwordField.value === '') {
@@ -46,15 +69,19 @@ const Login = () => {
       passwordFieldErr.classList.remove('login__form-field--success');
       passwordFieldErr.innerText = 'Es obligatorio que ingrese su contraseña';
     } else {
-      passwordFieldErr.classList.add('login__form-field--success');
       passwordFieldErr.classList.remove('login__form-field--err');
-      passwordFieldErr.innerText = '¡Correcto!';
+      passwordFieldErr.innerText = '';
     }
 
-    if (emailField.value !== '' && passwordField.value !== '') {
-      login(e);
-    }
-  }
+    // if (emailField.value !== '' && passwordField.value !== '') {
+    //   handleSubmit(event);
+    // }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(`${envConfig.apiUrl}/auth/iniciar-sesion`, form);
+  };
 
   return (
     <div className='login'>
@@ -63,7 +90,7 @@ const Login = () => {
       </figure>
       <h1 className='login--title'>Inicia sesión</h1>
       <p className='login--txt'>Inicia sesión para explorar la ruta</p>
-      <form className='login__form'>
+      <form className='login__form' onSubmit={handleSubmit}>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='email'>
             Correo electrónico
@@ -74,6 +101,7 @@ const Login = () => {
             name='email'
             type='email'
             placeholder='Ingresa tu correo electrónico'
+            onChange={handleInput}
             required
           />
           <span id='email-err' className='login__form-field--err'></span>
@@ -88,6 +116,7 @@ const Login = () => {
             name='password'
             type='password'
             placeholder='Ingresa tu contraseña'
+            onChange={handleInput}
             required
           />
           <span id='password-err' className='login__form-field--err'></span>
