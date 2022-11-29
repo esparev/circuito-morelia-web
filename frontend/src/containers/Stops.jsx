@@ -46,7 +46,7 @@ const Stops = () => {
 
   return (
     <>
-      <PageHeader title='Paradas' />
+      <PageHeader title='Paradas' isFilter />
 
       <main className='hero'>
         <div className='entities__list'>

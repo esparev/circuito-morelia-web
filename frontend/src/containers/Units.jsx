@@ -66,7 +66,7 @@ const Units = () => {
 
   return (
     <>
-      <PageHeader title='Unidades' />
+      <PageHeader title='Unidades' isFilter />
 
       <main className='hero'>
         <div className='entities__list'>

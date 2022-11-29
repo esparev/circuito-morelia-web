@@ -8,7 +8,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <PageHeader title='Mapa' isHomePage />;
+  return <PageHeader title='Mapa' isHomePage isFilter />;
 };
 
 export default Home;

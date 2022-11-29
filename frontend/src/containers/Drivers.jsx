@@ -73,7 +73,7 @@ const Drivers = () => {
 
   return (
     <>
-      <PageHeader title='Conductores' />
+      <PageHeader title='Conductores' isFilter />
 
       <main className='hero'>
         <div className='entities__list'>
