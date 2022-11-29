@@ -1,13 +1,19 @@
 @import './Vars.css';
 
 .crud-button {
+  width: fit-content;
   display: flex;
   align-items: center;
   column-gap: 4px;
   padding: 8px 28px;
+  border: none;
   border-radius: 8px;
   font-size: 1.4rem;
   font-weight: var(--semibold);
+  font-family: 'Inter', sans-serif;
+}
+.crud-button:hover {
+  cursor: pointer;
 }
 .crud-button--black {
   color: var(--white);

@@ -2,10 +2,10 @@ import React from 'react';
 import '@styles/Button.css';
 
 const AddButton = (props) => {
-  const { entityName } = props;
+  const { entityName, onClick } = props;
 
   return (
-    <a className='crud-button crud-button--black' href=''>
+    <button className='crud-button crud-button--black' type='button' onClick={onClick}>
       <svg
         className='icon--16 icon--white'
         width='72'
@@ -22,7 +22,7 @@ const AddButton = (props) => {
         />
       </svg>
       Agregar {entityName}
-    </a>
+    </button>
   );
 };
 
