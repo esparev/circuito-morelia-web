@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHeader from '@components/PageHeader';
 import DriverItem from '@components/DriverItem';
 import useGetUsers from '@hooks/useGetUsers';
@@ -65,6 +65,11 @@ const Drivers = () => {
   // ];
   const users = useGetUsers(envConfig.apiUrl);
   const drivers = users.filter((driver) => driver.role === 'driver');
+
+  useEffect(() => {
+    document.title = 'Conductores';
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

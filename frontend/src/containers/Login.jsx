@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { envConfig } from '@config';
@@ -7,6 +7,11 @@ import '@styles/Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Iniciar Sesión';
+    window.scrollTo(0, 0);
+  }, []);
 
   const [form, setValues] = useState({
     email: '',

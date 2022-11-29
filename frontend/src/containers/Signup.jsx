@@ -5,8 +5,8 @@ import '@styles/Login.css';
 
 const Signup = () => {
   useEffect(() => {
-    const sendButton = document.querySelector('#send-btn');
-    sendButton.addEventListener('click', validateForm);
+    document.title = 'Crear Cuenta';
+    window.scrollTo(0, 0);
   }, []);
 
   function validateForm(e) {
@@ -38,7 +38,7 @@ const Signup = () => {
       emailFieldErr.classList.add('login__form-field--err');
       emailFieldErr.classList.remove('login__form-field--success');
       emailFieldErr.innerText = 'Ingrese un correo válido';
-    }else {
+    } else {
       emailFieldErr.classList.add('login__form-field--success');
       emailFieldErr.classList.remove('login__form-field--err');
       emailFieldErr.innerText = '¡Correcto!';

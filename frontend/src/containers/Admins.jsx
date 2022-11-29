@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Admins = () => {};
+const Admins = () => {
+  useEffect(() => {
+    document.title = 'Administradores';
+    window.scrollTo(0, 0);
+  }, []);
+};
 
 export default Admins;

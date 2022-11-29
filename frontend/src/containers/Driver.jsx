@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Driver = () => {};
+const Driver = () => {
+  useEffect(() => {
+    document.title = 'Conductor';
+    window.scrollTo(0, 0);
+  }, []);
+};
 
 export default Driver;

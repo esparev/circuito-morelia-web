@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHeader from '@components/PageHeader';
 import UnitItem from '@components/UnitItem';
 import useGetUnits from '@hooks/useGetUnits';
@@ -58,6 +58,11 @@ const Units = () => {
   //   },
   // ];
   const units = useGetUnits(envConfig.apiUrl);
+
+  useEffect(() => {
+    document.title = 'Unidades';
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

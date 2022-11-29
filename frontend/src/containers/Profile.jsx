@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Profile = () => {};
+const Profile = () => {
+  useEffect(() => {
+    document.title = 'Perfil';
+    window.scrollTo(0, 0);
+  }, []);
+};
 
 export default Profile;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHeader from '@components/PageHeader';
 import StopItem from '@components/StopItem';
 import useGetStops from '@hooks/useGetStops';
@@ -39,7 +39,10 @@ const Stops = () => {
   // ];
   const stops = useGetStops(envConfig.apiUrl);
 
-  console.log(stops);
+  useEffect(() => {
+    document.title = 'Paradas';
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
