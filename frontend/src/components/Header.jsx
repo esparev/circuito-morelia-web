@@ -78,6 +78,11 @@ const Header = (props) => {
           <li className='menu__item'>
             <Link to='conductores'>Conductores</Link>
           </li>
+          {localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'hero' ? (
+            <li className='menu__item'>
+              <Link to='admins'>Administradores</Link>
+            </li>
+          ) : null}
           <li className='menu__item'>
             <Link to='perfil'>Perfil</Link>
           </li>
