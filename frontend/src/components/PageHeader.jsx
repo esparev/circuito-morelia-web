@@ -1,8 +1,11 @@
 import React from 'react';
+import AddButton from '@components/AddButton';
+import EditButton from '@components/EditButton';
+import DeleteButton from '@components/DeleteButton';
 import '@styles/PageHeader.css';
 
 const PageHeader = (props) => {
-  const { title, isHomePage, isFilter, isStopPage } = props;
+  const { title, isHomePage, isFilter, isStopPage, entityName, isSingleEntity } = props;
 
   const handleToggle = (e) => {
     const chip = document.querySelector(`[value=${e.currentTarget.getAttribute('value')}]`);
@@ -347,6 +350,16 @@ const PageHeader = (props) => {
             )}
           </div>
         ) : null}
+      </div>
+      <div className='page__header--right'>
+        {isSingleEntity ? (
+          <>
+            <EditButton entityName={entityName} />
+            <DeleteButton entityName={entityName} />
+          </>
+        ) : (
+          <>{isStopPage ? null : <AddButton entityName={entityName} />}</>
+        )}
       </div>
     </div>
   );
