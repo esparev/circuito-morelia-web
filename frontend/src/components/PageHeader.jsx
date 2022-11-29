@@ -5,7 +5,7 @@ import DeleteButton from '@components/DeleteButton';
 import '@styles/PageHeader.css';
 
 const PageHeader = (props) => {
-  const { title, isHomePage, isFilter, isStopPage, entityName, isSingleEntity } = props;
+  const { title, isHomePage, isFilter, isAddable, entityName, isSingleEntity } = props;
 
   const handleToggle = (e) => {
     const chip = document.querySelector(`[value=${e.currentTarget.getAttribute('value')}]`);
@@ -183,7 +183,7 @@ const PageHeader = (props) => {
               </>
             ) : (
               <>
-                {isStopPage ? (
+                {isAddable ? (
                   <>
                     <button
                       className='filter__chip'
@@ -352,14 +352,18 @@ const PageHeader = (props) => {
         ) : null}
       </div>
       <div className='page__header--right'>
-        {isSingleEntity ? (
+        {localStorage.getItem('role') === 'hero' || localStorage.getItem('role') === 'admin' ? (
           <>
-            <EditButton entityName={entityName} />
-            <DeleteButton entityName={entityName} />
+            {isSingleEntity ? (
+              <>
+                <EditButton entityName={entityName} />
+                <DeleteButton entityName={entityName} />
+              </>
+            ) : (
+              <>{isAddable ? <AddButton entityName={entityName} /> : null}</>
+            )}
           </>
-        ) : (
-          <>{isStopPage ? null : <AddButton entityName={entityName} />}</>
-        )}
+        ) : null}
       </div>
     </div>
   );
