@@ -15,7 +15,7 @@ const Admins = () => {
 
   return (
     <>
-      <PageHeader title='Administradores' entityName='Administrador' />
+      <PageHeader title='Administradores' entityName='Administrador' isAddable />
 
       <main className='hero'>
         <div className='entities__list'>

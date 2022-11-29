@@ -66,7 +66,7 @@ const Units = () => {
 
   return (
     <>
-      <PageHeader title='Unidades' entityName='Unidad' isFilter />
+      <PageHeader title='Unidades' entityName='Unidad' isFilter isAddable />
 
       <main className='hero'>
         <div className='entities__list'>
