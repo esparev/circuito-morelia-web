@@ -28,12 +28,12 @@ const UnitSchema = {
 		type: DataTypes.INTEGER,
 	},
 	distanceInMins: {
-		allowNull: false,
+		allowNull: true,
 		field: 'distance_in_mins',
 		type: DataTypes.INTEGER,
 	},
 	distanceInMts: {
-		allowNull: false,
+		allowNull: true,
 		field: 'distance_in_kms',
 		type: DataTypes.INTEGER,
 	},
@@ -80,9 +80,10 @@ class Unit extends Model {
 	// para el caso de que el rol del usuario sea de conductor
 	static associate(models) {
 		this.belongsToMany(models.User, {
+			as: 'driver',
 			through: models.UnitDriver,
 			foreignKey: 'unitId',
-			otherKey: 'userId',
+			otherKey: 'driverId',
 		});
 	}
 }

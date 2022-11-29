@@ -58,7 +58,6 @@ const UserSchema = {
 	},
 	image: {
 		allowNull: true,
-		defaultValue: 'https://image.com',
 		type: DataTypes.STRING,
 	},
 	recoveryToken: {

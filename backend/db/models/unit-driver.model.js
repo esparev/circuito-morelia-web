@@ -11,7 +11,7 @@ const { USER_TABLE } = require('./user.model');
  * @extends {Model}
  * @property {number} id - Id de la tabla unit_has_driver
  * @property {string} unitId - Llave foranea de la unidad
- * @property {string} userId - Llave foranea del usuario
+ * @property {string} driverId - Llave foranea del usuario
  */
 const UnitDriverSchema = {
 	id: {

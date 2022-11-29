@@ -25,7 +25,6 @@ const StopSchema = {
 	},
 	latitude: {
 		allowNull: false,
-		unique: true,
 		type: DataTypes.DECIMAL(8, 6),
 	},
 	longitude: {
