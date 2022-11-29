@@ -9,8 +9,6 @@ const DriverItem = (props) => {
       <div className='entity__container'>
         <svg
           className='icon--24 icon--black'
-          width='72'
-          height='72'
           viewBox='0 0 72 72'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'>
@@ -49,8 +47,6 @@ const DriverItem = (props) => {
         <span>Ver en mapa</span>
         <svg
           className='icon--20 icon--black'
-          width='72'
-          height='72'
           viewBox='0 0 72 72'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'>

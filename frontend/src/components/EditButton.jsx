@@ -8,8 +8,6 @@ const EditButton = (props) => {
     <a className='crud-button crud-button--black' href=''>
       <svg
         className='icon--16 icon--white'
-        width='72'
-        height='72'
         viewBox='0 0 72 72'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'>

@@ -9,19 +9,27 @@ const AdminItem = (props) => {
       <div className='entity__container'>
         <svg
           className='icon--24 icon--black'
-          width='72'
-          height='72'
           viewBox='0 0 72 72'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'>
-          <path
-            d='M63 36C63 50.9117 50.9117 63 36 63C21.0883 63 9 50.9117 9 36M63 36C63 21.0883 50.9117 9 36 9C21.0883 9 9 21.0883 9 36M63 36H48M9 36H24M33 36H39'
+          <circle
+            cx='36'
+            cy='24'
+            r='15'
+            fill='#222227'
             strokeWidth='6'
             strokeLinecap='round'
             strokeLinejoin='round'
           />
           <path
-            d='M36 45H46C47.1046 45 48 44.1046 48 43V29C48 27.8954 47.1046 27 46 27H26C24.8954 27 24 27.8954 24 29V43C24 44.1046 24.8954 45 26 45H36ZM36 45V63'
+            d='M60 63C60 49.7452 49.2548 39 36 39C22.7452 39 12 49.7452 12 63'
+            strokeWidth='6'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+          <path
+            d='M36 39C22.7452 39 12 49.7452 12 63H60C60 49.7452 49.2548 39 36 39Z'
+            fill='#222227'
             strokeWidth='6'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -39,8 +47,6 @@ const AdminItem = (props) => {
         <span>Ver admin</span>
         <svg
           className='icon--20 icon--black'
-          width='72'
-          height='72'
           viewBox='0 0 72 72'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'>
