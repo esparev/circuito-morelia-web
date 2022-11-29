@@ -21,9 +21,9 @@ module.exports = {
 	},
 
 	async down(queryInterface, Sequelize) {
+		await queryInterface.dropTable(UNIT_DRIVER_TABLE);
 		await queryInterface.dropTable(USER_TABLE);
 		await queryInterface.dropTable(UNIT_TABLE);
 		await queryInterface.dropTable(STOP_TABLE);
-		await queryInterface.dropTable(UNIT_DRIVER_TABLE);
 	},
 };
