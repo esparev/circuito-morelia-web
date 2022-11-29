@@ -11,7 +11,10 @@ const {
 } = require('./middlewares/error.handler');
 
 const app = express();
+var cors = require('cors');
 const port = process.env.PORT || 3003;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
 	res.send('API Circuito Morelia');
