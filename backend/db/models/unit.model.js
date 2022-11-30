@@ -46,13 +46,11 @@ const UnitSchema = {
 		allowNull: true,
 		field: 'departure_time',
 		type: DataTypes.TIME(6),
-		defaultValue: Sequelize.NOW,
 	},
 	arrivalTime: {
 		allowNull: true,
 		field: 'arrival_time',
 		type: DataTypes.TIME(6),
-		defaultValue: Sequelize.NOW,
 	},
 };
 
