@@ -1,0 +1,26 @@
+@import './Vars.css';
+
+.alert {
+  height: 40px;
+  overflow: hidden;
+}
+.alert__container {
+  padding: 12px 68px;
+}
+.alert__container p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--white);
+}
+.alert--green {
+  background-color: green;
+}
+.alert--red {
+  background-color: red;
+}
+
+@media (max-width: 768px) {
+  .alert__container {
+    padding: 12px 20px;
+  }
+}
