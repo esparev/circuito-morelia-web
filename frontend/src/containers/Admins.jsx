@@ -8,7 +8,7 @@ import '@styles/Entities.css';
 
 const Admins = () => {
   const users = useGetUsers(envConfig.apiUrl);
-  const admins = users.filter((admin) => admin.role !== 'driver');
+  const admins = users.filter((admin) => admin.role !== 'driver' && admin.role !== 'client');
 
   useEffect(() => {
     document.title = 'Administradores';
@@ -22,6 +22,8 @@ const Admins = () => {
 
   return (
     <>
+      <div className="alert"></div>
+
       <PageHeader
         title='Administradores'
         entityName='Administrador'

@@ -126,7 +126,9 @@ const AddDriverModal = () => {
               required
             />
           </div>
-          <button className='crud-button crud-button--black'>Agregar Conductor</button>
+          <button className='crud-button crud-button--black' type='submit'>
+            Agregar Conductor
+          </button>
         </form>
       </div>
     </div>

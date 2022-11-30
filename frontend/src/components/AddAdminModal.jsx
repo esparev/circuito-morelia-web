@@ -1,10 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+import SuccessAlert from '@components/SuccessAlert';
+import ErrorAlert from '@components/ErrorAlert';
+import axios from 'axios';
+import slugify from 'slugify';
+import { authConfig } from '@constants';
+import { envConfig } from '@config';
 import '@styles/Modal.css';
 
 const AddAdminModal = () => {
+  const [form, setValues] = useState({
+    slug: '',
+    name: '',
+    email: '',
+    password: '',
+    role: 'admin',
+  });
+
+  const handleInput = (event) => {
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const addAdmin = async (url, data, config) => {
+    const root = ReactDOM.createRoot(document.querySelector('.alert'));
+
+    await axios
+      .post(url, data, config)
+      .then((res) => {
+        root.render(<SuccessAlert successMessage={'¡Administrador agregado exitosamente!'} />);
+        setTimeout(() => {
+          document.querySelector('.alert__container').classList.remove('animate__slideInDown');
+          document.querySelector('.alert__container').classList.add('animate__slideOutUp');
+          setTimeout(() => {
+            root.unmount();
+          }, 500);
+        }, 5000);
+      })
+      .catch((error) => {
+        console.log(data);
+        root.render(
+          <ErrorAlert errorMessage={'¡Ups!, Hubo un error al agregar al administrador.'} />
+        );
+        setTimeout(() => {
+          document.querySelector('.alert__container').classList.remove('animate__slideInDown');
+          document.querySelector('.alert__container').classList.add('animate__slideOutUp');
+          setTimeout(() => {
+            root.unmount();
+          }, 500);
+        }, 5000);
+      });
+  };
+
   const hideModal = () => {
     const modal = document.querySelector('.modal');
     modal.classList.remove('modal--show');
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const regex = /\s+/g;
+    form.slug = slugify(form.name.replace(regex, '-'), { lower: true });
+    addAdmin(`${envConfig.apiUrl}/users/admin`, form, authConfig);
+    hideModal();
   };
 
   return (
@@ -26,7 +86,7 @@ const AddAdminModal = () => {
             />
           </svg>
         </div>
-        <form className='modal__form'>
+        <form className='modal__form' onSubmit={handleSubmit}>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='name'>
               Nombre
@@ -37,6 +97,7 @@ const AddAdminModal = () => {
               name='name'
               type='text'
               placeholder='Ingresa el nombre completo'
+              onChange={handleInput}
               required
             />
           </div>
@@ -50,6 +111,7 @@ const AddAdminModal = () => {
               name='email'
               type='email'
               placeholder='Ingresa el correo electrónico'
+              onChange={handleInput}
               required
             />
           </div>
@@ -63,10 +125,13 @@ const AddAdminModal = () => {
               name='password'
               type='password'
               placeholder='Ingresa la contraseña'
+              onChange={handleInput}
               required
             />
           </div>
-          <button className='crud-button crud-button--black'>Agregar Administrador</button>
+          <button className='crud-button crud-button--black' type='submit'>
+            Agregar Administrador
+          </button>
         </form>
       </div>
     </div>
