@@ -77,7 +77,7 @@ class UsersService {
 	async createAdmin(data) {
 		const hash = await bcrypt.hash(data.password, 13);
 
-		if (data.role !== 'hero' || data.role !== 'hero') {
+		if (data.role === 'driver' || data.role === 'client') {
 			throw boom.unauthorized('No esta permitido esta accion');
 		}
 
