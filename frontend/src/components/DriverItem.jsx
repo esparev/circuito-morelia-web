@@ -44,7 +44,7 @@ const DriverItem = (props) => {
         </div>
       </div>
       <a className='entity__button' href=''>
-        <span>Ver en mapa</span>
+        <span>Ver conductor</span>
         <svg
           className='icon--20 icon--black'
           viewBox='0 0 72 72'

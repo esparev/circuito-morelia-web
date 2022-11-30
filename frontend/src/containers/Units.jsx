@@ -73,6 +73,7 @@ const Units = () => {
   return (
     <>
       <div className="alert"></div>
+      
       <PageHeader title='Unidades' entityName='Unidad' isFilter isAddable onClick={showModal} />
 
       <main className='hero'>
