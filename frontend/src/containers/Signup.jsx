@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import slugify from 'slugify';
+import { authConfig } from '@constants';
+import { envConfig } from '@config';
 import CircuitoMorelia from '@img/Circuito_Morelia.png';
 import '@styles/Login.css';
 
@@ -9,9 +13,36 @@ const Signup = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  function validateForm(e) {
-    e.preventDefault();
+  const [form, setValues] = useState({
+    slug: '',
+    name: '',
+    email: '',
+    password: '',
+    role: 'client',
+  });
 
+  const handleInput = (event) => {
+    validateForm();
+    setValues({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const signup = async (url, data) => {
+    await axios
+      .post(url, data)
+      .then((res) => {
+        window.location.href = '/inicia-sesion';
+      })
+      .catch((error) => {
+        if (error) {
+          //! const wrongSignup
+        }
+      });
+  };
+
+  const validateForm = () => {
     const validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const nameField = document.querySelector('#name');
     const emailField = document.querySelector('#email');
@@ -57,7 +88,14 @@ const Signup = () => {
     if (emailField.value !== '' && passwordField.value !== '') {
       // sendMessage(e);
     }
-  }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const regex = /\s+/g;
+    form.slug = slugify(form.name.replace(regex, '-'), { lower: true });
+    signup(`${envConfig.apiUrl}/users`, form, authConfig);
+  };
 
   return (
     <div className='login'>
@@ -66,7 +104,7 @@ const Signup = () => {
       </figure>
       <h1 className='login--title'>Crear cuenta</h1>
       <p className='login--txt'>Crea una cuenta y conoce el circuito</p>
-      <form className='login__form'>
+      <form className='login__form' onSubmit={handleSubmit}>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='name'>
             Nombre
@@ -77,6 +115,7 @@ const Signup = () => {
             name='name'
             type='name'
             placeholder='Ingresa tu nombre completo'
+            onChange={handleInput}
             required
           />
           <span id='name-err' className='login__form-field--err'></span>
@@ -91,6 +130,7 @@ const Signup = () => {
             name='email'
             type='email'
             placeholder='Ingresa tu correo electrónico'
+            onChange={handleInput}
             required
           />
           <span id='email-err' className='login__form-field--err'></span>
@@ -105,6 +145,7 @@ const Signup = () => {
             name='password'
             type='password'
             placeholder='Ingresa tu contraseña'
+            onChange={handleInput}
             required
           />
           <span id='password-err' className='login__form-field--err'></span>
