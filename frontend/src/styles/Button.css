@@ -19,6 +19,10 @@
   color: var(--white);
   background-color: var(--black);
 }
+.crud-button--gray {
+  color: var(--black);
+  background-color: #e9e9e9;
+}
 .crud-button--red {
   color: var(--white);
   background-color: var(--red-100);

@@ -1,0 +1,17 @@
+@import './Vars.css';
+
+.profile {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  padding: 16px 68px;
+}
+.profile .modal__form {
+  width: 70%;
+  margin: 20px 20px 20px 0 ;
+  align-items: start;
+}
+.profile__edit--buttons {
+  display: flex;
+  column-gap: 12px;
+}
