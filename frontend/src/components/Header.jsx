@@ -32,7 +32,7 @@ const Header = (props) => {
     <header className='header'>
       <div className='header__buttons'>
         <figure className='header__figure'>
-          <Link to=''>
+          <Link to='/'>
             <img className='header__figure--img' src={LogoCircuito} alt='Logo Circuito Morelia' />
           </Link>
         </figure>
@@ -70,27 +70,27 @@ const Header = (props) => {
       {isMenu ? (
         <ul className='menu' id='menu'>
           <li className='menu__item'>
-            <Link to='paradas'>Paradas</Link>
+            <Link to='/paradas'>Paradas</Link>
           </li>
           <li className='menu__item'>
-            <Link to='unidades'>Unidades</Link>
+            <Link to='/unidades'>Unidades</Link>
           </li>
           <li className='menu__item'>
-            <Link to='conductores'>Conductores</Link>
+            <Link to='/conductores'>Conductores</Link>
           </li>
           {localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'hero' ? (
             <li className='menu__item'>
-              <Link to='admins'>Administradores</Link>
+              <Link to='/admins'>Administradores</Link>
             </li>
           ) : null}
           <li className='menu__item'>
-            <Link to='perfil'>Perfil</Link>
+            <Link to='/perfil'>Perfil</Link>
           </li>
           <li className='menu__item'>
             <Link
               className='menu__logout--svg'
               onClick={logout}
-              to='inicia-sesion'
+              to='/inicia-sesion'
               title='Cerrar sesión'>
               <svg
                 className='icon--24 icon--gray'

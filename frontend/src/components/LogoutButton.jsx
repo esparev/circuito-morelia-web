@@ -8,7 +8,7 @@ const LogoutButton = (props) => {
   return (
     <Link
       className='crud-button crud-button--black menu__logout--btn'
-      to='inicia-sesion'
+      to='/inicia-sesion'
       onClick={onClick}>
       <svg
         className='icon--16 icon--white'

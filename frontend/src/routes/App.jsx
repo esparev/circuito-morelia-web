@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '@containers/Layout';
 import Login from '@containers/Login';
 import Signup from '@containers/Signup';
@@ -17,19 +17,19 @@ const App = ({ isLogged }) => {
   return (
     <BrowserRouter>
       <Layout isLogged={isLogged}>
-        <Routes>
-          <Route path='/' element={isLogged ? <Home /> : <Login />} />
-          <Route path='admins' element={isLogged ? <Admins /> : <Login />} />
-          <Route path='admins/:slug' element={isLogged ? <Admin /> : <Login />} />
-          <Route path='conductores' element={isLogged ? <Drivers /> : <Login />} />
-          <Route path='conductores/:slug' element={isLogged ? <Driver /> : <Login />} />
-          <Route path='unidades' element={isLogged ? <Units /> : <Login />} />
-          <Route path='unidades/:slug' element={isLogged ? <Unit /> : <Login />} />
-          <Route path='paradas' element={isLogged ? <Stops /> : <Login />} />
-          <Route path='perfil' element={isLogged ? <Profile /> : <Login />} />
-          <Route path='inicia-sesion' element={<Login />} />
-          <Route path='crear-cuenta' element={<Signup />} />
-        </Routes>
+        <Switch>
+          <Route exact path='/' component={isLogged ? Home : Login} />
+          <Route exact path='/admins' component={isLogged ? Admins : Login} />
+          <Route exact path='/admins/:slug' component={isLogged ? Admin : Login} />
+          <Route exact path='/conductores' component={isLogged ? Drivers : Login} />
+          <Route exact path='/conductores/:slug' component={isLogged ? Driver : Login} />
+          <Route exact path='/unidades' component={isLogged ? Units : Login} />
+          <Route exact path='/unidades/:slug' component={isLogged ? Unit : Login} />
+          <Route exact path='/paradas' component={isLogged ? Stops : Login} />
+          <Route exact path='/perfil' component={isLogged ? Profile : Login} />
+          <Route exact path='/inicia-sesion' component={Login} />
+          <Route exact path='/crear-cuenta' component={Signup} />
+        </Switch>
       </Layout>
     </BrowserRouter>
   );
