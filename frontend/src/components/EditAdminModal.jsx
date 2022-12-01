@@ -35,7 +35,6 @@ const EditAdminModal = (props) => {
         }, 5000);
       })
       .catch((error) => {
-        console.log(data);
         root.render(
           <ErrorAlert errorMessage={'¡Ups!, Hubo un error al editar al administrador.'} />
         );

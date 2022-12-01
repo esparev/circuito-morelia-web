@@ -40,7 +40,6 @@ const AddAdminModal = () => {
         }, 5000);
       })
       .catch((error) => {
-        console.log(data);
         root.render(
           <ErrorAlert errorMessage={'¡Ups!, Hubo un error al agregar al administrador.'} />
         );
