@@ -22,7 +22,7 @@ const Admins = () => {
 
   return (
     <>
-      <div className="alert"></div>
+      <div className='alert'></div>
 
       <PageHeader
         title='Administradores'
@@ -38,6 +38,7 @@ const Admins = () => {
               key={admin.id}
               name={admin.name}
               email={admin.email}
+              route={`/admins/${admin.slug}`}
               // onRoute={admin.onRoute}
               // location={admin.location}
             />

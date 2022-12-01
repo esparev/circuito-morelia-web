@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '@styles/Entity.css';
 
 const AdminItem = (props) => {
-  const { name, email } = props;
+  const { name, email, route } = props;
 
   return (
     <div className='entity'>
@@ -43,7 +44,7 @@ const AdminItem = (props) => {
           </div>
         </div>
       </div>
-      <a className='entity__button' href=''>
+      <Link className='entity__button' to={route}>
         <span>Ver admin</span>
         <svg
           className='icon--20 icon--black'
@@ -57,7 +58,7 @@ const AdminItem = (props) => {
             strokeLinejoin='round'
           />
         </svg>
-      </a>
+      </Link>
     </div>
   );
 };
