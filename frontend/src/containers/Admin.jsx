@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SinglePageHeader from '@components/SinglePageHeader';
 import EditAdminModal from '@components/EditAdminModal';
@@ -8,11 +8,14 @@ import useGetUser from '@hooks/useGetUser';
 import useGetUsers from '@hooks/useGetUsers';
 import { envConfig } from '@config';
 
-const Admin = (props) => {
+const Admin = () => {
   const { slug } = useParams();
   const admin = useGetUser(envConfig.apiUrl, slug);
   const users = useGetUsers(envConfig.apiUrl);
-  const admins = users.filter((admin) => admin.role !== 'driver' && admin.role !== 'client');
+  const admins = users.filter(
+    (otherAdmin) =>
+      otherAdmin.role !== 'driver' && otherAdmin.role !== 'client' && otherAdmin.slug !== admin.slug
+  );
 
   useEffect(() => {
     document.title = 'Administrador';
