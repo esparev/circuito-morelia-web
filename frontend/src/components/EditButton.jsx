@@ -2,10 +2,10 @@ import React from 'react';
 import '@styles/Button.css';
 
 const EditButton = (props) => {
-  const { entityName } = props;
+  const { entityName, onClick } = props;
 
   return (
-    <a className='crud-button crud-button--black' href=''>
+    <button className='crud-button crud-button--black' onClick={onClick}>
       <svg
         className='icon--16 icon--white'
         viewBox='0 0 72 72'
@@ -19,7 +19,7 @@ const EditButton = (props) => {
         />
       </svg>
       Editar {entityName}
-    </a>
+    </button>
   );
 };
 
