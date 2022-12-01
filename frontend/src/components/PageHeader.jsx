@@ -3,7 +3,7 @@ import AddButton from '@components/AddButton';
 import '@styles/PageHeader.css';
 
 const PageHeader = (props) => {
-  const { title, isHomePage, isFilter, isAddable, entityName, onClick } = props;
+  const { title, isHomePage, isFilter, isStopPage, isAddable, entityName, onClick } = props;
 
   const handleToggle = (e) => {
     const chip = document.querySelector(`[value=${e.currentTarget.getAttribute('value')}]`);
@@ -169,7 +169,7 @@ const PageHeader = (props) => {
               </>
             ) : (
               <>
-                {isAddable ? (
+                {isStopPage ? (
                   <>
                     <button
                       className='filter__chip'
