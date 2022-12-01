@@ -33,13 +33,33 @@ router.get('/', async (req, res, next) => {
  * @apiGroup Usuarios
  * @apiSuccess {Object} Usuario obtenido
  */
+// router.get(
+// 	'/:id',
+// 	validatorHandler(getUserSchema, 'params'),
+// 	async (req, res, next) => {
+// 		try {
+// 			const { id } = req.params;
+// 			const user = await service.findOne(id);
+// 			res.status(200).json(user);
+// 		} catch (error) {
+// 			next(error);
+// 		}
+// 	}
+// );
+
+/**
+ * @api {get} /users/:id Obtener usuario
+ * @apiName ObtenerUsuario
+ * @apiGroup Usuarios
+ * @apiSuccess {Object} Usuario obtenido
+ */
 router.get(
-	'/:id',
+	'/:slug',
 	validatorHandler(getUserSchema, 'params'),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
-			const user = await service.findOne(id);
+			const { slug } = req.params;
+			const user = await service.findBySlug(slug);
 			res.status(200).json(user);
 		} catch (error) {
 			next(error);

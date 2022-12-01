@@ -17,6 +17,23 @@ class UnitsService {
 	}
 
 	/**
+	 * Encuentra la unidad con el numero proporcionado
+	 * @param {string} number - numero de la unidad
+	 * @returns {Object} - Objeto con la unidad encontrado
+	 */
+	 async findByNumber(number) {
+		const unit = await models.Unit.findOne({
+			where: { number },
+		});
+
+		if (!unit) {
+			throw boom.notFound('unidad no encontrada');
+		}
+
+		return unit;
+	}
+
+	/**
 	 * Encuentra la unidad con el id proporcionado
 	 * @param {number} id - id de la unidad
 	 * @returns {Object} - Objeto con la unidad

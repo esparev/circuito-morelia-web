@@ -9,7 +9,7 @@ const role = Joi.string().min(1).max(255);
 const image = Joi.string().uri();
 
 const getUserSchema = Joi.object({
-	id: id.required(),
+	slug: slug.required(),
 });
 
 const createUserSchema = Joi.object({

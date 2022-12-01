@@ -37,12 +37,12 @@ router.get('/', async (req, res, next) => {
  * @apiSuccess {Object} Unidad obtenida
  */
 router.get(
-	'/:id',
+	'/:number',
 	validatorHandler(getUnitSchema, 'params'),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
-			const unit = await service.findOne(id);
+			const { number } = req.params;
+			const unit = await service.findByNumber(number);
 			res.status(200).json(unit);
 		} catch (error) {
 			next(error);

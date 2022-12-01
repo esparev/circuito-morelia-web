@@ -10,7 +10,7 @@ const arrivalTime = Joi.date().timestamp();
 const driverId = Joi.number().integer().min(1);
 
 const getUnitSchema = Joi.object({
-	id: id.required(),
+	number: number.required(),
 });
 
 const createUnitSchema = Joi.object({

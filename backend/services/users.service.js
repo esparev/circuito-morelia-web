@@ -35,6 +35,23 @@ class UsersService {
 	}
 
 	/**
+	 * Encuentra el usuario con el slug proporcionado
+	 * @param {string} slug - slug del usuario
+	 * @returns {Object} - Objeto con el usuario encontrado
+	 */
+	async findBySlug(slug) {
+		const user = await models.User.findOne({
+			where: { slug },
+		});
+
+		if (!user) {
+			throw boom.notFound('usuario no encontrado');
+		}
+
+		return user;
+	}
+
+	/**
 	 * Encuentra el usuario con el id proporcionado
 	 * @param {number} id - id del usuario
 	 * @returns {Object} - Objeto con el usuario
