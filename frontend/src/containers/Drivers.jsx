@@ -96,7 +96,7 @@ const Drivers = () => {
             <DriverItem
               key={driver.id}
               name={driver.name}
-              // unitNumber={driver.unitNumber}
+              route={`/conductores/${driver.slug}`}
               // onRoute={driver.onRoute}
               // location={driver.location}
             />

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '@styles/Entity.css';
 
 const DriverItem = (props) => {
-  const { name, unitNumber, onRoute, location } = props;
+  const { name, unitNumber, onRoute, location, route } = props;
 
   return (
     <div className='entity'>
@@ -43,7 +44,7 @@ const DriverItem = (props) => {
           )}
         </div>
       </div>
-      <a className='entity__button' href=''>
+      <Link className='entity__button' to={route}>
         <span>Ver conductor</span>
         <svg
           className='icon--20 icon--black'
@@ -57,7 +58,7 @@ const DriverItem = (props) => {
             strokeLinejoin='round'
           />
         </svg>
-      </a>
+      </Link>
     </div>
   );
 };
