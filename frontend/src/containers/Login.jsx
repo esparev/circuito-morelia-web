@@ -32,6 +32,7 @@ const Login = () => {
 
         localStorage.setItem('id', user.id);
         localStorage.setItem('name', user.name);
+        localStorage.setItem('slug', user.slug);
         localStorage.setItem('email', user.email);
         localStorage.setItem('image', user.image);
         localStorage.setItem('role', user.role);
