@@ -5,15 +5,15 @@ import axios from 'axios';
  * Obtiene los datos de la unidad con el
  * id proporcionado de la API
  * @param {*} API - URL de la API
- * @param {*} unitId - id de la unidad
+ * @param {*} unitNumber - id de la unidad
  * @returns - datos de la unidad en JSON
  */
-const useGetUnit = (API, unitId) => {
+const useGetUnit = (API, unitNumber) => {
   const [unit, setUnit] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios(`${API}/units/${unitId}`);
+      const response = await axios(`${API}/units/${unitNumber}`);
       setUnit(response.data);
     }
     fetchData();

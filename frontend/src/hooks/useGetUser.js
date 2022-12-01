@@ -5,15 +5,15 @@ import axios from 'axios';
  * Obtiene los datos del usuario con el
  * id proporcionado de la API
  * @param {*} API - URL de la API
- * @param {*} userId - id del usuario
+ * @param {*} userSlug - id del usuario
  * @returns - datos del usuario en JSON
  */
-const useGetUser = (API, userId) => {
+const useGetUser = (API, userSlug) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios(`${API}/users/${userId}`);
+      const response = await axios(`${API}/users/${userSlug}`);
       setUser(response.data);
     }
     fetchData();
