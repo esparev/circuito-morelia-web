@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
-import SinglePageHeader from '@components/SinglePageHeader';
+import EditButton from '@components/EditButton';
+import DeleteButton from '@components/DeleteButton';
 import DeleteProfileModal from '@components/DeleteProfileModal';
 import useGetUser from '@hooks/useGetUser';
 import axios from 'axios';
@@ -69,12 +70,15 @@ const Profile = () => {
     <>
       <div className='alert'></div>
 
-      <SinglePageHeader
-        title='Mi Perfil'
-        entityName='Perfil'
-        onEdit={() => setDisabled(false)}
-        onDelete={showModal}
-      />
+      <div className='page__header hero'>
+        <div className='single-page__header--left'>
+          <h1 className='page__header--title'>Mi Perfil</h1>
+        </div>
+        <div className='page__header--right'>
+          <EditButton entityName='Perfil' onClick={() => setDisabled(false)} />
+          <DeleteButton entityName='Perfil' onClick={showModal} />
+        </div>
+      </div>
 
       <div className='profile'>
         <form className='modal__form' onSubmit={handleSubmit}>
