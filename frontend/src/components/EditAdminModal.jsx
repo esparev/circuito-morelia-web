@@ -50,7 +50,7 @@ const EditAdminModal = (props) => {
   };
 
   const hideModal = () => {
-    const modal = document.querySelector('.modal');
+    const modal = document.querySelector('.edit__modal');
     modal.classList.remove('modal--show');
   };
 
@@ -61,7 +61,7 @@ const EditAdminModal = (props) => {
   };
 
   return (
-    <div className='modal'>
+    <div className='edit__modal'>
       <div className='modal__container'>
         <div className='modal__header'>
           <h2 className='modal__title'>Editar Administrador</h2>

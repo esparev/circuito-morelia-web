@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SinglePageHeader from '@components/SinglePageHeader';
 import EditAdminModal from '@components/EditAdminModal';
+import DeleteAdminModal from '@components/DeleteAdminModal';
 import AdminItem from '@components/AdminItem';
 import useGetUser from '@hooks/useGetUser';
 import useGetUsers from '@hooks/useGetUsers';
@@ -18,8 +19,13 @@ const Admin = (props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const showModal = () => {
-    const modal = document.querySelector('.modal');
+  const showEditModal = () => {
+    const modal = document.querySelector('.edit__modal');
+    modal.classList.add('modal--show');
+  };
+
+  const showDeleteModal = () => {
+    const modal = document.querySelector('.delete__modal');
     modal.classList.add('modal--show');
   };
 
@@ -31,7 +37,8 @@ const Admin = (props) => {
         title={admin.name}
         info={admin.email}
         entityName='Administrador'
-        onEdit={showModal}
+        onEdit={showEditModal}
+        onDelete={showDeleteModal}
         isSingleEntity
       />
 
@@ -50,6 +57,7 @@ const Admin = (props) => {
       </main>
 
       <EditAdminModal slug={admin.slug} />
+      <DeleteAdminModal slug={admin.slug} />
     </>
   );
 };
