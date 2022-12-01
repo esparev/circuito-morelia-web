@@ -71,29 +71,29 @@ class UnitsService {
 	}
 
 	/**
-	 * Actualiza parcialmente la unidad con el id proporcionado
+	 * Actualiza parcialmente la unidad con el numero proporcionado
 	 * con los datos proporcionados
-	 * @param {number} id - id de la unidad
+	 * @param {number} number - numero de la unidad
 	 * @param {*} changes - datos de la unidad
 	 * @returns {Object} - Objeto con la unidad actualizado
 	 * @throws {Error} - Error si no se encuentra la unidad
 	 */
-	async update(id, changes) {
-		const unit = await this.findOne(id);
+	async update(number, changes) {
+		const unit = await this.findByNumber(number);
 		const response = await unit.update(changes);
 		return response;
 	}
 
 	/**
-	 * Elimina la unidad con el id proporcionado
-	 * @param {number} id - id de la unidad
+	 * Elimina la unidad con el numero proporcionado
+	 * @param {number} number - numero de la unidad
 	 * @returns {Object} - Objeto con la unidad eliminado
 	 * @throws {Error} - Error si no se encuentra la unidad
 	 */
-	async delete(id) {
-		const unit = await this.findOne(id);
+	async delete(number) {
+		const unit = await this.findByNumber(number);
 		await unit.destroy();
-		return { id };
+		return { number };
 	}
 }
 

@@ -109,29 +109,29 @@ class UsersService {
 	}
 
 	/**
-	 * Actualiza parcialmente el usuario con el id proporcionado
+	 * Actualiza parcialmente el usuario con el slug proporcionado
 	 * con los datos proporcionados
-	 * @param {number} id - id del usuario
+	 * @param {number} slug - slug del usuario
 	 * @param {*} changes - datos del usuario
 	 * @returns {Object} - Objeto con el usuario actualizado
 	 * @throws {Error} - Error si no se encuentra el usuario
 	 */
-	async update(id, changes) {
-		const user = await this.findOne(id);
+	async update(slug, changes) {
+		const user = await this.findBySlug(slug);
 		const response = await user.update(changes);
 		return response;
 	}
 
 	/**
-	 * Elimina el usuario con el id proporcionado
-	 * @param {number} id - id del usuario
+	 * Elimina el usuario con el slug proporcionado
+	 * @param {number} slug - slug del usuario
 	 * @returns {Object} - Objeto con el usuario eliminado
 	 * @throws {Error} - Error si no se encuentra el usuario
 	 */
-	async delete(id) {
-		const user = await this.findOne(id);
+	async delete(slug) {
+		const user = await this.findBySlug(slug);
 		await user.destroy();
-		return { id };
+		return { slug };
 	}
 }
 

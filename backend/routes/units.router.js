@@ -31,7 +31,7 @@ router.get('/', async (req, res, next) => {
 
 /**
  * Ruta de unidad por id
- * @api {get} /units/:id Obtener unidad
+ * @api {get} /units/:number Obtener unidad
  * @apiName ObtenerUnidad
  * @apiGroup Unidades
  * @apiSuccess {Object} Unidad obtenida
@@ -96,21 +96,21 @@ router.post(
 
 /**
  * Ruta de actualización de unidad
- * @api {patch} /units/:id Actualizar unidad
+ * @api {patch} /units/:number Actualizar unidad
  * @apiName ActualizarUnidad
  * @apiGroup Unidades
  * @apiSuccess {Object} Unidad actualizada
  */
 router.patch(
-	'/:id',
+	'/:number',
 	passport.authenticate('jwt', { session: false }),
 	validatorHandler(getUnitSchema, 'params'),
 	validatorHandler(updateUnitSchema, 'body'),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
+			const { number } = req.params;
 			const body = req.body;
-			const updatedUnit = await service.update(id, body);
+			const updatedUnit = await service.update(number, body);
 			res.status(200).json({ updatedUnit, message: 'unidad actualizada' });
 		} catch (error) {
 			next(error);
@@ -120,18 +120,18 @@ router.patch(
 
 /**
  * Ruta de eliminación de unidad
- * @api {delete} /units/:id Eliminar unidad
+ * @api {delete} /units/:number Eliminar unidad
  * @apiName EliminarUnidad
  * @apiGroup Unidades
  * @apiSuccess {Object} Unidad eliminada
  */
 router.delete(
-	'/:id',
+	'/:number',
 	passport.authenticate('jwt', { session: false }),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
-			const deletedUnit = await service.delete(id);
+			const { number } = req.params;
+			const deletedUnit = await service.delete(number);
 			res.status(200).json({ deletedUnit, message: 'unidad eliminada' });
 		} catch (error) {
 			next(error);

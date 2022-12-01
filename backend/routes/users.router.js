@@ -48,7 +48,7 @@ router.get('/', async (req, res, next) => {
 // );
 
 /**
- * @api {get} /users/:id Obtener usuario
+ * @api {get} /users/:slug Obtener usuario
  * @apiName ObtenerUsuario
  * @apiGroup Usuarios
  * @apiSuccess {Object} Usuario obtenido
@@ -112,21 +112,21 @@ router.post(
 
 /**
  * Ruta de actualización de usuario
- * @api {patch} /users/:id Actualizar usuario
+ * @api {patch} /users/:slug Actualizar usuario
  * @apiName ActualizarUsuario
  * @apiGroup Usuarios
  * @apiSuccess {Object} Usuario actualizado
  */
 router.patch(
-	'/:id',
+	'/:slug',
 	passport.authenticate('jwt', { session: false }),
 	validatorHandler(getUserSchema, 'params'),
 	validatorHandler(updateUserSchema, 'body'),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
+			const { slug } = req.params;
 			const body = req.body;
-			const updatedUser = await service.update(id, body);
+			const updatedUser = await service.update(slug, body);
 			res.status(200).json({ updatedUser, message: 'usuario actualizado' });
 		} catch (error) {
 			next(error);
@@ -136,18 +136,18 @@ router.patch(
 
 /**
  * Ruta de eliminación de usuario
- * @api {delete} /users/:id Eliminar usuario
+ * @api {delete} /users/:slug Eliminar usuario
  * @apiName EliminarUsuario
  * @apiGroup Usuarios
  * @apiSuccess {Object} Usuario eliminado
  */
 router.delete(
-	'/:id',
+	'/:slug',
 	passport.authenticate('jwt', { session: false }),
 	async (req, res, next) => {
 		try {
-			const { id } = req.params;
-			const deletedUser = await service.delete(id);
+			const { slug } = req.params;
+			const deletedUser = await service.delete(slug);
 			res.status(200).json({ deletedUser, message: 'usuario eliminado' });
 		} catch (error) {
 			next(error);
