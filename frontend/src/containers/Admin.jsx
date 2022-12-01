@@ -42,7 +42,6 @@ const Admin = () => {
         entityName='Administrador'
         onEdit={showEditModal}
         onDelete={showDeleteModal}
-        isSingleEntity
       />
 
       <main className='hero'>

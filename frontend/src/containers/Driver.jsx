@@ -45,7 +45,6 @@ const Driver = () => {
         entityName='Condcutor'
         onEdit={showEditModal}
         onDelete={showDeleteModal}
-        isSingleEntity
       />
 
       <main className='hero'>

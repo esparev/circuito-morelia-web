@@ -39,7 +39,6 @@ const Unit = () => {
         entityName='Unidad'
         onEdit={showEditModal}
         onDelete={showDeleteModal}
-        isSingleEntity
       />
 
       <main className='hero'>
