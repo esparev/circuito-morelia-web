@@ -65,6 +65,15 @@
   color: var(--white);
 }
 
+.single-page__header--left {
+  display: flex;
+  flex-direction: column;
+}
+.single-page__header--info {
+  font-size: 1.6rem;
+  color: var(--gray-300);
+}
+
 @media (max-width: 768px) {
   .page__header {
     flex-direction: column;
@@ -83,5 +92,9 @@
   .page__filters,
   .filter__chip--txt {
     font-size: 1.2rem;
+  }
+  .single-page__header--info {
+    font-size: 1.2rem;
+    color: var(--gray-300);
   }
 }
