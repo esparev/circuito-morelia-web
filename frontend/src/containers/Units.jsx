@@ -82,6 +82,7 @@ const Units = () => {
             <UnitItem
               key={unit.id}
               number={unit.number}
+              route={`/unidades/${unit.number}`}
               // onRoute={unit.onRoute}
               // location={unit.location}
             />
