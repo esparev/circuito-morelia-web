@@ -19,18 +19,18 @@ const DeleteProfileModal = (props) => {
       .delete(url, config)
       .then((res) => {
         root.render(<SuccessAlert successMessage={'¡Tu perfil se ha eliminado exitosamente!'} />);
+        localStorage.clear();
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
+            window.location.href = '/inicia-sesion';
           }, 500);
         }, 5000);
       })
       .catch((error) => {
-        root.render(
-          <ErrorAlert errorMessage={'¡Ups!, Hubo un error al eliminar tu perfil.'} />
-        );
+        root.render(<ErrorAlert errorMessage={'¡Ups!, Hubo un error al eliminar tu perfil.'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
@@ -78,9 +78,7 @@ const DeleteProfileModal = (props) => {
         </div>
         {confirmed ? (
           <div className='modal__form'>
-            <h3 className='modal__form--title'>
-              ¿Está seguro que deseas eliminar tu perfil?
-            </h3>
+            <h3 className='modal__form--title'>¿Está seguro que deseas eliminar tu perfil?</h3>
             <p className='modal__form--text'>Esta acción es irreversible.</p>
             <div className='delete-modal__form'>
               <button className='crud-button crud-button--red' type='button' onClick={handleSubmit}>
