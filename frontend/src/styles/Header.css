@@ -13,6 +13,10 @@
   align-items: center;
   justify-content: space-between;
 }
+.header__figure a {
+  display: block;
+  height: 100%;
+}
 .header__figure--img {
   height: 40px;
 }
