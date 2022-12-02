@@ -3,7 +3,17 @@ import AddButton from '@components/AddButton';
 import '@styles/PageHeader.css';
 
 const PageHeader = (props) => {
-  const { title, isHomePage, isFilter, isStopPage, isAddable, entityName, onClick } = props;
+  const {
+    title,
+    isHomePage,
+    isFilter,
+    isStopPage,
+    isAddable,
+    entityName,
+    onClick,
+    filterByOutward,
+    filterByReturn,
+  } = props;
 
   const handleToggle = (e) => {
     const chip = document.querySelector(`[value=${e.currentTarget.getAttribute('value')}]`);
@@ -132,7 +142,10 @@ const PageHeader = (props) => {
                   className='filter__chip'
                   type='button'
                   value='outboundRoute'
-                  onClick={handleToggle}>
+                  onClick={(e) => {
+                    handleToggle(e);
+                    filterByOutward();
+                  }}>
                   <svg
                     className='icon--20 icon--gray'
                     viewBox='0 0 72 72'
@@ -151,7 +164,10 @@ const PageHeader = (props) => {
                   className='filter__chip'
                   type='button'
                   value='returnRoute'
-                  onClick={handleToggle}>
+                  onClick={(e) => {
+                    handleToggle(e);
+                    filterByReturn();
+                  }}>
                   <svg
                     className='icon--20 icon--gray'
                     viewBox='0 0 72 72'
@@ -175,7 +191,10 @@ const PageHeader = (props) => {
                       className='filter__chip'
                       type='button'
                       value='outboundRoute'
-                      onClick={handleToggle}>
+                      onClick={(e) => {
+                        handleToggle(e);
+                        filterByOutward();
+                      }}>
                       <svg
                         className='icon--20 icon--gray'
                         viewBox='0 0 72 72'
@@ -194,7 +213,10 @@ const PageHeader = (props) => {
                       className='filter__chip'
                       type='button'
                       value='returnRoute'
-                      onClick={handleToggle}>
+                      onClick={(e) => {
+                        handleToggle(e);
+                        filterByReturn();
+                      }}>
                       <svg
                         className='icon--20 icon--gray'
                         viewBox='0 0 72 72'
@@ -284,7 +306,10 @@ const PageHeader = (props) => {
                       className='filter__chip'
                       type='button'
                       value='outboundRoute'
-                      onClick={handleToggle}>
+                      onClick={(e) => {
+                        handleToggle(e);
+                        filterByOutward();
+                      }}>
                       <svg
                         className='icon--20 icon--gray'
                         viewBox='0 0 72 72'
@@ -303,7 +328,10 @@ const PageHeader = (props) => {
                       className='filter__chip'
                       type='button'
                       value='returnRoute'
-                      onClick={handleToggle}>
+                      onClick={(e) => {
+                        handleToggle(e);
+                        filterByReturn();
+                      }}>
                       <svg
                         className='icon--20 icon--gray'
                         viewBox='0 0 72 72'
