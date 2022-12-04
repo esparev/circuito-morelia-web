@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { envConfig } from '@config';
 import CircuitoMorelia from '@img/Circuito_Morelia.png';
 import '@styles/Login.css';
@@ -11,17 +13,15 @@ const Login = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [form, setValues] = useState({
-    email: '',
-    password: '',
-  });
+  const initialValues = () => {
+    return { email: '', password: '' };
+  };
 
-  const handleInput = (event) => {
-    validateForm();
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
+  const validationSchema = () => {
+    return {
+      email: Yup.string().email('Ingrese un correo válido').required('Por favor ingrese su correo'),
+      password: Yup.string().required('Por favor ingrese su contraseña'),
+    };
   };
 
   const login = async (url, data) => {
@@ -48,44 +48,13 @@ const Login = () => {
       });
   };
 
-  const validateForm = () => {
-    const validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const emailField = document.querySelector('#email');
-    const passwordField = document.querySelector('#password');
-    const emailFieldErr = document.querySelector('#email-err');
-    const passwordFieldErr = document.querySelector('#password-err');
-
-    if (emailField.value === '') {
-      emailFieldErr.classList.add('login__form-field--err');
-      emailFieldErr.classList.remove('login__form-field--success');
-      emailFieldErr.innerText = 'Es obligatorio que ingrese su correo';
-    } else if (emailField.value.match(validEmailRegex) === null) {
-      emailFieldErr.classList.add('login__form-field--err');
-      emailFieldErr.classList.remove('login__form-field--success');
-      emailFieldErr.innerText = 'Ingrese un correo válido';
-    } else {
-      emailFieldErr.classList.remove('login__form-field--err');
-      emailFieldErr.innerText = '';
-    }
-
-    if (passwordField.value === '') {
-      passwordFieldErr.classList.add('login__form-field--err');
-      passwordFieldErr.classList.remove('login__form-field--success');
-      passwordFieldErr.innerText = 'Es obligatorio que ingrese su contraseña';
-    } else {
-      passwordFieldErr.classList.remove('login__form-field--err');
-      passwordFieldErr.innerText = '';
-    }
-
-    // if (emailField.value !== '' && passwordField.value !== '') {
-    //   handleSubmit(event);
-    // }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login(`${envConfig.apiUrl}/auth/iniciar-sesion`, form);
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    onSubmit: (data) => {
+      login(`${envConfig.apiUrl}/auth/iniciar-sesion`, data);
+    },
+  });
 
   return (
     <div className='login'>
@@ -94,7 +63,7 @@ const Login = () => {
       </figure>
       <h1 className='login--title'>Inicia sesión</h1>
       <p className='login--txt'>Inicia sesión para explorar la ruta</p>
-      <form className='login__form' onSubmit={handleSubmit}>
+      <form className='login__form' onSubmit={formik.handleSubmit}>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='email'>
             Correo electrónico
@@ -105,10 +74,12 @@ const Login = () => {
             name='email'
             type='email'
             placeholder='Ingresa tu correo electrónico'
-            onChange={handleInput}
-            required
+            onChange={formik.handleChange}
+            value={formik.values.email}
           />
-          <span id='email-err' className='login__form-field--err'></span>
+          <span id='email-err' className='login__form-field--err'>
+            {formik.errors.email}
+          </span>
         </div>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='password'>
@@ -120,10 +91,12 @@ const Login = () => {
             name='password'
             type='password'
             placeholder='Ingresa tu contraseña'
-            onChange={handleInput}
-            required
+            onChange={formik.handleChange}
+            value={formik.values.password}
           />
-          <span id='password-err' className='login__form-field--err'></span>
+          <span id='password-err' className='login__form-field--err'>
+            {formik.errors.password}
+          </span>
         </div>
         <a className='login__form--forgot' href=''>
           ¿Olvidaste tu contraseña?

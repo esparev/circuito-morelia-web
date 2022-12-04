@@ -61,7 +61,7 @@ const Driver = () => {
         </div>
       </main>
 
-      <EditDriverModal slug={driver.slug} />
+      <EditDriverModal driver={driver} slug={driver.slug} />
       <DeleteDriverModal slug={driver.slug} />
     </>
   );

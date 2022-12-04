@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
 import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
 import '@styles/Modal.css';
@@ -10,13 +12,19 @@ import '@styles/Modal.css';
 const EditUnitModal = (props) => {
   const { number } = props;
 
-  const [form, setValues] = useState({});
+  const initialValues = () => {
+    return { number: '' };
+  };
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
+  const validationSchema = () => {
+    return {
+      number: Yup.number(),
+    };
+  };
+
+  const hideModal = () => {
+    const modal = document.querySelector('.edit__modal');
+    modal.classList.remove('modal--show');
   };
 
   const editUnit = async (url, data, config) => {
@@ -25,37 +33,38 @@ const EditUnitModal = (props) => {
     await axios
       .patch(url, data, config)
       .then((res) => {
+        hideModal();
         root.render(<SuccessAlert successMessage={'¡Unidad editada exitosamente!'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+            window.location.href = data.number;
+          }, 100);
+        }, 3000);
       })
       .catch((error) => {
+        hideModal();
         root.render(<ErrorAlert errorMessage={'¡Ups!, Hubo un error al editar la unidad.'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       });
   };
 
-  const hideModal = () => {
-    const modal = document.querySelector('.edit__modal');
-    modal.classList.remove('modal--show');
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    editUnit(`${envConfig.apiUrl}/units/${number}`, form, authConfig);
-    hideModal();
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    validateOnChange: false,
+    onSubmit: (data) => {
+      editUnit(`${envConfig.apiUrl}/units/${number}`, data, authConfig);
+    },
+  });
 
   return (
     <div className='edit__modal'>
@@ -76,10 +85,10 @@ const EditUnitModal = (props) => {
             />
           </svg>
         </div>
-        <form className='modal__form' onSubmit={handleSubmit}>
+        <form className='modal__form' onSubmit={formik.handleSubmit}>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='number'>
-              Número de Unidad <span>(Del 0 al 200)</span>
+              Número de Unidad <span>(Del 1 al 1000)</span>
             </label>
             <input
               className='modal__form-field--input'
@@ -87,8 +96,8 @@ const EditUnitModal = (props) => {
               name='number'
               type='number'
               placeholder='Ingresa el número de la unidad'
-              onChange={handleInput}
-              required
+              onChange={formik.handleChange}
+              value={formik.values.number}
             />
           </div>
           <button className='crud-button crud-button--black' type='submit'>

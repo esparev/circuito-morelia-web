@@ -12,6 +12,7 @@ const AssignDriverModal = (props) => {
   const { unitId } = props;
   const users = useGetUsers(envConfig.apiUrl);
   const drivers = users.filter((driver) => driver.role === 'driver');
+  const [error, setError] = useState('');
   const [form, setValues] = useState({
     unitId: 0,
     driverId: '',
@@ -24,20 +25,28 @@ const AssignDriverModal = (props) => {
     });
   };
 
+  const hideModal = () => {
+    const modal = document.querySelector('.assign__modal');
+    modal.classList.remove('modal--show');
+  };
+
   const assignDriver = async (url, data, config) => {
     const root = ReactDOM.createRoot(document.querySelector('.alert'));
 
     await axios
       .post(url, data, config)
       .then((res) => {
+        hideModal();
         root.render(<SuccessAlert successMessage={'¡Conductor asignado exitosamente!'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
+            hideModal();
             root.unmount();
-          }, 500);
-        }, 5000);
+            window.location.reload();
+          }, 100);
+        }, 3000);
       })
       .catch((error) => {
         root.render(<ErrorAlert errorMessage={'¡Ups!, Hubo un error al asignar al conductor.'} />);
@@ -46,22 +55,18 @@ const AssignDriverModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       });
-  };
-
-  const hideModal = () => {
-    const modal = document.querySelector('.assign__modal');
-    modal.classList.remove('modal--show');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    form.unitId = unitId;
-    console.log(form);
-    assignDriver(`${envConfig.apiUrl}/units/add-driver`, form, authConfig);
-    hideModal();
+    if (form.driverId) {
+      form.unitId = unitId;
+      assignDriver(`${envConfig.apiUrl}/units/add-driver`, form, authConfig);
+    }
+    setError('Por favor seleccione un conductor')
   };
 
   return (
@@ -90,8 +95,8 @@ const AssignDriverModal = (props) => {
             </label>
             <select
               className='modal__form-field--input'
-              name='driverId'
               id='driver'
+              name='driverId'
               onChange={handleInput}>
               <option className='modal__form-field--option' defaultValue=''>
                 Escoja un conductor
@@ -102,6 +107,7 @@ const AssignDriverModal = (props) => {
                 </option>
               ))}
             </select>
+            <span className='login__form-field--err'>{error}</span>
           </div>
           <button className='crud-button crud-button--black' type='submit'>
             Asignar Conductor

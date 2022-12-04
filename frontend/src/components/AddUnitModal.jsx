@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
 import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
 import '@styles/Modal.css';
 
 const AddUnitModal = () => {
-  const [form, setValues] = useState({
-    number: 0,
-  });
+  const initialValues = () => {
+    return { number: '' };
+  };
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: Number(event.target.value),
-    });
+  const validationSchema = () => {
+    return {
+      number: Yup.number('Por favor ingrese un número válido').required(
+        'Por favor ingrese un número'
+      ),
+    };
+  };
+
+  const hideModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('modal--show');
   };
 
   const addUnit = async (url, data, config) => {
@@ -25,37 +33,37 @@ const AddUnitModal = () => {
     await axios
       .post(url, data, config)
       .then((res) => {
+        hideModal();
         root.render(<SuccessAlert successMessage={'¡Unidad agregada exitosamente!'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       })
       .catch((error) => {
+        hideModal();
         root.render(<ErrorAlert errorMessage={'¡Ups!, Parece que ya existe esa unidad.'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       });
   };
 
-  const hideModal = () => {
-    const modal = document.querySelector('.modal');
-    modal.classList.remove('modal--show');
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    addUnit(`${envConfig.apiUrl}/units`, form, authConfig);
-    hideModal();
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    validateOnChange: false,
+    onSubmit: (data) => {
+      addUnit(`${envConfig.apiUrl}/units`, data, authConfig);
+    },
+  });
 
   return (
     <div className='modal'>
@@ -76,10 +84,10 @@ const AddUnitModal = () => {
             />
           </svg>
         </div>
-        <form className='modal__form' onSubmit={handleSubmit}>
+        <form className='modal__form' onSubmit={formik.handleSubmit}>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='number'>
-              Número de Unidad <span>(Del 0 al 200)</span>
+              Número de Unidad <span>(Del 1 al 1000)</span>
             </label>
             <input
               className='modal__form-field--input'
@@ -87,9 +95,10 @@ const AddUnitModal = () => {
               name='number'
               type='number'
               placeholder='Ingresa el número de la unidad'
-              onChange={handleInput}
-              required
+              onChange={formik.handleChange}
+              value={formik.values.number}
             />
+            <span className='login__form-field--err'>{formik.errors.number}</span>
           </div>
           <button className='crud-button crud-button--black' type='submit'>
             Agregar Unidad

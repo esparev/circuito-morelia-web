@@ -16,7 +16,7 @@
   background-color: green;
 }
 .alert--red {
-  background-color: red;
+  background-color: var(--red-100);
 }
 
 @media (max-width: 768px) {

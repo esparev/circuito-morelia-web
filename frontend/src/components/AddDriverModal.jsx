@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
 import axios from 'axios';
 import slugify from 'slugify';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
 import '@styles/Modal.css';
 
 const AddDriverModal = () => {
-  const [form, setValues] = useState({
-    slug: '',
-    name: '',
-    email: '',
-    password: '',
-    role: 'driver',
-  });
+  const initialValues = () => {
+    return { slug: '', name: '', email: '', password: '', role: 'driver' };
+  };
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
+  const validationSchema = () => {
+    return {
+      name: Yup.string().required('Por favor ingrese un nombre'),
+      email: Yup.string().email('Ingrese un correo válido').required('Por favor ingrese un correo'),
+      password: Yup.string().required('Por favor ingrese un contraseña'),
+    };
+  };
+
+  const hideModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('modal--show');
   };
 
   const addDriver = async (url, data, config) => {
@@ -30,39 +34,39 @@ const AddDriverModal = () => {
     await axios
       .post(url, data, config)
       .then((res) => {
+        hideModal();
         root.render(<SuccessAlert successMessage={'¡Conductor agregado exitosamente!'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       })
       .catch((error) => {
+        hideModal();
         root.render(<ErrorAlert errorMessage={'¡Ups!, Hubo un error al agregar al conductor.'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       });
   };
 
-  const hideModal = () => {
-    const modal = document.querySelector('.modal');
-    modal.classList.remove('modal--show');
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const regex = /\s+/g;
-    form.slug = slugify(form.name.replace(regex, '-'), { lower: true });
-    addDriver(`${envConfig.apiUrl}/users`, form, authConfig);
-    hideModal();
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    validateOnChange: false,
+    onSubmit: (data) => {
+      const regex = /\s+/g;
+      data.slug = slugify(data.name.replace(regex, '-'), { lower: true });
+      addDriver(`${envConfig.apiUrl}/users`, data, authConfig);
+    },
+  });
 
   return (
     <div className='modal'>
@@ -83,7 +87,7 @@ const AddDriverModal = () => {
             />
           </svg>
         </div>
-        <form className='modal__form' onSubmit={handleSubmit}>
+        <form className='modal__form' onSubmit={formik.handleSubmit}>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='name'>
               Nombre
@@ -94,9 +98,10 @@ const AddDriverModal = () => {
               name='name'
               type='text'
               placeholder='Ingresa el nombre completo'
-              onChange={handleInput}
-              required
+              onChange={formik.handleChange}
+              value={formik.values.name}
             />
+            <span className='login__form-field--err'>{formik.errors.name}</span>
           </div>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='email'>
@@ -108,9 +113,10 @@ const AddDriverModal = () => {
               name='email'
               type='email'
               placeholder='Ingresa el correo electrónico'
-              onChange={handleInput}
-              required
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
+            <span className='login__form-field--err'>{formik.errors.email}</span>
           </div>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='password'>
@@ -122,9 +128,10 @@ const AddDriverModal = () => {
               name='password'
               type='password'
               placeholder='Ingresa la contraseña'
-              onChange={handleInput}
-              required
+              onChange={formik.handleChange}
+              value={formik.values.password}
             />
+            <span className='login__form-field--err'>{formik.errors.password}</span>
           </div>
           <button className='crud-button crud-button--black' type='submit'>
             Agregar Conductor

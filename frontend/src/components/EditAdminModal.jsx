@@ -3,20 +3,31 @@ import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
 import axios from 'axios';
+import slugify from 'slugify';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { authConfig } from '@constants';
 import { envConfig } from '@config';
 import '@styles/Modal.css';
 
 const EditAdminModal = (props) => {
-  const { slug } = props;
+  const { admin, slug } = props;
 
-  const [form, setValues] = useState({});
+  const initialValues = () => {
+    return {};
+  };
 
-  const handleInput = (event) => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
+  const validationSchema = () => {
+    return {
+      name: Yup.string(),
+      email: Yup.string().email(),
+      password: Yup.string(),
+    };
+  };
+
+  const hideModal = () => {
+    const modal = document.querySelector('.edit__modal');
+    modal.classList.remove('modal--show');
   };
 
   const editAdmin = async (url, data, config) => {
@@ -25,16 +36,19 @@ const EditAdminModal = (props) => {
     await axios
       .patch(url, data, config)
       .then((res) => {
+        hideModal();
         root.render(<SuccessAlert successMessage={'¡Administrador editado exitosamente!'} />);
         setTimeout(() => {
           document.querySelector('.alert__container').classList.remove('animate__slideInDown');
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+            window.location.href = data.slug;
+          }, 100);
+        }, 3000);
       })
       .catch((error) => {
+        hideModal();
         root.render(
           <ErrorAlert errorMessage={'¡Ups!, Hubo un error al editar al administrador.'} />
         );
@@ -43,21 +57,21 @@ const EditAdminModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-          }, 500);
-        }, 5000);
+          }, 100);
+        }, 3000);
       });
   };
 
-  const hideModal = () => {
-    const modal = document.querySelector('.edit__modal');
-    modal.classList.remove('modal--show');
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    editAdmin(`${envConfig.apiUrl}/users/${slug}`, form, authConfig);
-    hideModal();
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: Yup.object(validationSchema()),
+    validateOnChange: false,
+    onSubmit: (data) => {
+      const regex = /\s+/g;
+      data.slug = slugify(data.name.replace(regex, '-'), { lower: true });
+      editAdmin(`${envConfig.apiUrl}/users/${slug}`, data, authConfig);
+    },
+  });
 
   return (
     <div className='edit__modal'>
@@ -78,7 +92,7 @@ const EditAdminModal = (props) => {
             />
           </svg>
         </div>
-        <form className='modal__form' onSubmit={handleSubmit}>
+        <form className='modal__form' onSubmit={formik.handleSubmit}>
           <div className='modal__form-field'>
             <label className='modal__form-field--lbl' htmlFor='name'>
               Nombre
@@ -88,8 +102,9 @@ const EditAdminModal = (props) => {
               id='name'
               name='name'
               type='text'
-              placeholder='Ingresa el nombre completo'
-              onChange={handleInput}
+              placeholder={admin.name}
+              onChange={formik.handleChange}
+              value={formik.values.name}
             />
           </div>
           <div className='modal__form-field'>
@@ -101,8 +116,9 @@ const EditAdminModal = (props) => {
               id='email'
               name='email'
               type='email'
-              placeholder='Ingresa el correo electrónico'
-              onChange={handleInput}
+              placeholder={admin.email}
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
           </div>
           <div className='modal__form-field'>
@@ -114,8 +130,9 @@ const EditAdminModal = (props) => {
               id='password'
               name='password'
               type='password'
-              placeholder='Ingresa la contraseña'
-              onChange={handleInput}
+              placeholder='••••••'
+              onChange={formik.handleChange}
+              value={formik.values.password}
             />
           </div>
           <button className='crud-button crud-button--black' type='submit'>

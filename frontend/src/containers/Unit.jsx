@@ -14,7 +14,6 @@ const Unit = () => {
   const { slug } = useParams();
   const unit = useGetUnit(envConfig.apiUrl, slug);
   const { driver } = useGetUnit(envConfig.apiUrl, slug);
-  console.log(driver);
   const allUnits = useGetUnits(envConfig.apiUrl);
   const units = allUnits.filter((otherUnit) => otherUnit.number !== unit.number);
 

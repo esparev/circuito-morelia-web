@@ -58,7 +58,7 @@ const Admin = () => {
         </div>
       </main>
 
-      <EditAdminModal slug={admin.slug} />
+      <EditAdminModal admin={admin} slug={admin.slug} />
       <DeleteAdminModal slug={admin.slug} />
     </>
   );
