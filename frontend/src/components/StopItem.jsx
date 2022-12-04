@@ -52,7 +52,7 @@ const StopItem = (props) => {
         </div>
       </div>
       <a className='entity__button' href=''>
-        Ver en mapa
+        <span>Ver en mapa</span>
         <svg
           className='icon--20 icon--black'
           viewBox='0 0 72 72'

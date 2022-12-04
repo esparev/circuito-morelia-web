@@ -55,7 +55,7 @@ const UnitItem = (props) => {
         </div>
       </div>
       <Link className='entity__button' to={route}>
-        Ver unidad
+      <span>Ver unidad</span>
         <svg
           className='icon--20 icon--black'
           width='72'
