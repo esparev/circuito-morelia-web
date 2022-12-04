@@ -36,7 +36,7 @@ const StopItem = (props) => {
 
         <div className='entity__info'>
           <h3 className='entity__info--title'>{location}</h3>
-          {distanceInTime > 15 ? (
+          {distanceInTime < 15 ? (
             <div className='entity__route-info'>
               <p className='entity__route-info--txt'>Más cerca</p>
               <p className='entity__route-info--txt'>•</p>
