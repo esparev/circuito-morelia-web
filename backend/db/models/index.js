@@ -16,6 +16,7 @@ function setupModels(sequelize) {
 
 	// Iniciar las relaciones
 	Unit.associate(sequelize.models);
+	User.associate(sequelize.models);
 }
 
 module.exports = setupModels;

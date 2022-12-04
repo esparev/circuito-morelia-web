@@ -42,6 +42,7 @@ class UsersService {
 	async findBySlug(slug) {
 		const user = await models.User.findOne({
 			where: { slug },
+			include: ['unit'],
 		});
 
 		if (!user) {

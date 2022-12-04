@@ -71,6 +71,17 @@ const UserSchema = {
  * @class User
  */
 class User extends Model {
+	// Relacion muchos a muchos (M-N) entre unidad y usuarios
+	// para el caso de que el rol del usuario sea de conductor
+	static associate(models) {
+		this.belongsToMany(models.Unit, {
+			as: 'unit',
+			through: models.UnitDriver,
+			foreignKey: 'driverId',
+			otherKey: 'unitId',
+		});
+	}
+
 	/**
 	 * @param {*} sequelize - Instancia de Sequelize
 	 * @property {any} sequelize - coneccion tipo ORM
