@@ -17,13 +17,13 @@ class UnitsService {
 	}
 
 	/**
-	 * Encuentra la unidad con el numero proporcionado
-	 * @param {string} number - numero de la unidad
-	 * @returns {Object} - Objeto con la unidad encontrado
+	 * Encuentra la unidad con el id proporcionado
+	 * @param {number} id - id de la unidad
+	 * @returns {Object} - Objeto con la unidad
 	 */
-	 async findByNumber(number) {
-		const unit = await models.Unit.findOne({
-			where: { number },
+	async findOne(id) {
+		const unit = await models.Unit.findByPk(id, {
+			include: ['driver'],
 		});
 
 		if (!unit) {
@@ -34,12 +34,13 @@ class UnitsService {
 	}
 
 	/**
-	 * Encuentra la unidad con el id proporcionado
-	 * @param {number} id - id de la unidad
-	 * @returns {Object} - Objeto con la unidad
+	 * Encuentra la unidad con el numero proporcionado
+	 * @param {string} number - numero de la unidad
+	 * @returns {Object} - Objeto con la unidad encontrado
 	 */
-	async findOne(id) {
-		const unit = await models.Unit.findByPk(id, {
+	async findByNumber(number) {
+		const unit = await models.Unit.findOne({
+			where: { number },
 			include: ['driver'],
 		});
 

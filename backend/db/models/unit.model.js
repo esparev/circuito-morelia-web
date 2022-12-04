@@ -58,6 +58,17 @@ const UnitSchema = {
  * @class Unit
  */
 class Unit extends Model {
+	// Relacion muchos a muchos (M-N) entre unidad y usuarios
+	// para el caso de que el rol del usuario sea de conductor
+	static associate(models) {
+		this.belongsToMany(models.User, {
+			as: 'driver',
+			through: models.UnitDriver,
+			foreignKey: 'unitId',
+			otherKey: 'driverId',
+		});
+	}
+	
 	/**
 	 * @param {*} sequelize - Instancia de Sequelize
 	 * @property {any} sequelize - coneccion tipo ORM
@@ -72,17 +83,6 @@ class Unit extends Model {
 			modelName: 'Unit',
 			timestamps: false,
 		};
-	}
-
-	// Relacion muchos a muchos (M-N) entre unidad y usuarios
-	// para el caso de que el rol del usuario sea de conductor
-	static associate(models) {
-		this.belongsToMany(models.User, {
-			as: 'driver',
-			through: models.UnitDriver,
-			foreignKey: 'unitId',
-			otherKey: 'driverId',
-		});
 	}
 }
 
