@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PageHeader from '@components/PageHeader';
-import '@styles/global.css';
+import '@styles/Global.css';
 import '@styles/Home.css';
 
 const Home = () => {
