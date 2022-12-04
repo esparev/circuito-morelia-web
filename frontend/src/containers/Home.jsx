@@ -19,10 +19,10 @@ const Home = () => {
           width='100%'
           height='100%'
           style={{ filter: `grayscale(1) contrast(1.2) opacity(0.7)` }}
-          frameborder='0'
+          frameBorder='0'
           scrolling='no'
-          marginheight='0'
-          marginwidth='0'
+          marginHeight='0'
+          marginWidth='0'
           src='https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=morelia&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'></iframe>
       </div>
     </>
