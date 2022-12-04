@@ -16,7 +16,7 @@ if (config.isProd) {
 }
 
 const sequelize = new Sequelize(
-	config.isProd ? config.dbUrl : config.databaseUrl,
+	config.isProd ? config.databaseUrl : config.dbUrl,
 	options
 );
 
