@@ -5,6 +5,7 @@ import AssignDriverModal from '@components/AssignDriverModal';
 import EditUnitModal from '@components/EditUnitModal';
 import DeleteUnitModal from '@components/DeleteUnitModal';
 import UnitItem from '@components/UnitItem';
+import DriverItem from '@components/DriverItem';
 import useGetUnit from '@hooks/useGetUnit';
 import useGetUnits from '@hooks/useGetUnits';
 import { envConfig } from '@config';
@@ -12,6 +13,8 @@ import { envConfig } from '@config';
 const Unit = () => {
   const { slug } = useParams();
   const unit = useGetUnit(envConfig.apiUrl, slug);
+  const { driver } = useGetUnit(envConfig.apiUrl, slug);
+  console.log(driver);
   const allUnits = useGetUnits(envConfig.apiUrl);
   const units = allUnits.filter((otherUnit) => otherUnit.number !== unit.number);
 
@@ -52,6 +55,26 @@ const Unit = () => {
       />
 
       <main className='hero'>
+        {driver ? (
+          <>
+            {driver.length > 0 ? (
+              <>
+                <h2 className='title--h2'>Conductores de la unidad</h2>
+                <div className='entities__list'>
+                  {driver.map((driver) => (
+                    <DriverItem
+                      key={driver.id}
+                      name={driver.name}
+                      route={`/conductores/${driver.slug}`}
+                      // onRoute={driver.onRoute}
+                      // location={driver.location}
+                    />
+                  ))}
+                </div>
+              </>
+            ) : null}
+          </>
+        ) : null}
         <h2 className='title--h2'>Más Unidades</h2>
         <div className='entities__list'>
           {units.map((unit) => (
