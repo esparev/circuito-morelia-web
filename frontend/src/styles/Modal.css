@@ -1,6 +1,7 @@
 @import './Vars.css';
 
 .modal,
+.assign__modal,
 .edit__modal,
 .delete__modal {
   width: 100vw;
@@ -81,9 +82,13 @@
   font-family: 'Inter', sans-serif;
   font-weight: var(--regular);
   font-size: 1.6rem;
+  background-color: var(--white);
 }
 .modal__form-field--input:focus {
   outline: solid var(--black);
+}
+.modal__form-field--option {
+  color: var(--gray-300);
 }
 .modal__form--title {
   font-size: 1.8rem;

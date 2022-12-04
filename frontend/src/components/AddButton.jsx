@@ -10,8 +10,7 @@ const AddButton = (props) => {
         className='icon--16 icon--white'
         viewBox='0 0 72 72'
         fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
+        xmlns='http://www.w3.org/2000/svg'>
         <path
           d='M15 36H36M57 36H36M36 36V15M36 36V57'
           strokeWidth='6'

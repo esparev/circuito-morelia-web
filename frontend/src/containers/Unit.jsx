@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SinglePageHeader from '@components/SinglePageHeader';
+import AssignDriverModal from '@components/AssignDriverModal';
 import EditUnitModal from '@components/EditUnitModal';
 import DeleteUnitModal from '@components/DeleteUnitModal';
 import UnitItem from '@components/UnitItem';
@@ -18,6 +19,11 @@ const Unit = () => {
     document.title = 'Unidad';
     window.scrollTo(0, 0);
   }, []);
+
+  const showAssignModal = () => {
+    const modal = document.querySelector('.assign__modal');
+    modal.classList.add('modal--show');
+  };
 
   const showEditModal = () => {
     const modal = document.querySelector('.edit__modal');
@@ -37,6 +43,10 @@ const Unit = () => {
         title={`Unidad ${unit.number}`}
         info={``}
         entityName='Unidad'
+        otherEntityName='Conductor'
+        hasExtraButton
+        isDriverBtn
+        onAssign={showAssignModal}
         onEdit={showEditModal}
         onDelete={showDeleteModal}
       />
@@ -56,6 +66,7 @@ const Unit = () => {
         </div>
       </main>
 
+      <AssignDriverModal unitId={unit.id} />
       <EditUnitModal number={unit.number} />
       <DeleteUnitModal number={unit.number} />
     </>
