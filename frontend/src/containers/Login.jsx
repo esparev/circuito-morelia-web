@@ -52,7 +52,7 @@ const Login = () => {
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     onSubmit: (data) => {
-      login(`${envConfig.apiUrl}/auth/iniciar-sesion`, data);
+      login(`${envConfig.apiUrl}/auth/login`, data);
     },
   });
 
@@ -77,9 +77,7 @@ const Login = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          <span id='email-err' className='login__form-field--err'>
-            {formik.errors.email}
-          </span>
+          <span className='login__form-field--err'>{formik.errors.email}</span>
         </div>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='password'>
@@ -94,13 +92,11 @@ const Login = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          <span id='password-err' className='login__form-field--err'>
-            {formik.errors.password}
-          </span>
+          <span className='login__form-field--err'>{formik.errors.password}</span>
         </div>
-        <a className='login__form--forgot' href=''>
+        <Link className='login__form--forgot' to='/recuperar-contraseña'>
           ¿Olvidaste tu contraseña?
-        </a>
+        </Link>
         <button className='login__form--btn' id='send-btn' type='submit'>
           Iniciar sesión
         </button>

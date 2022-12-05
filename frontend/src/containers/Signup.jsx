@@ -71,9 +71,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          <span id='name-err' className='login__form-field--err'>
-            {formik.errors.name}
-          </span>
+          <span className='login__form-field--err'>{formik.errors.name}</span>
         </div>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='email'>
@@ -88,9 +86,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          <span id='email-err' className='login__form-field--err'>
-            {formik.errors.email}
-          </span>
+          <span className='login__form-field--err'>{formik.errors.email}</span>
         </div>
         <div className='login__form-field'>
           <label className='login__form-field--lbl' htmlFor='password'>
@@ -105,9 +101,7 @@ const Signup = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          <span id='password-err' className='login__form-field--err'>
-            {formik.errors.password}
-          </span>
+          <span className='login__form-field--err'>{formik.errors.password}</span>
         </div>
         <button className='login__form--btn' id='send-btn' type='submit'>
           Crear cuenta
