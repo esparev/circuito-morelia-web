@@ -8,24 +8,29 @@ const Header = (props) => {
   const { isLogged } = props;
 
   const [isActive, setActive] = useState(false);
+  const [isDesktop, setDesktop] = useState(false);
   const [isMenu, setMenu] = useState(isLogged);
 
   const logout = () => {
     setMenu(false);
+    setDesktop(false);
     localStorage.clear();
   };
 
-  const handleToggle = () => {
-    const menu = document.querySelector('#menu');
-    setActive(!isActive);
-    menu.classList.toggle('menu--visibility');
+  const handleDesktop = () => {
+    if (screen.width > 768) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
   };
 
   useEffect(() => {
     setActive(isLogged);
-    if (screen.width < 768) {
-      menu.classList.toggle('menu--visibility');
-    }
+    window.addEventListener('resize', handleDesktop());
+    return () => {
+      window.removeEventListener('resize', handleDesktop());
+    };
   }, []);
 
   return (
@@ -43,15 +48,15 @@ const Header = (props) => {
               className='header__hamburger'
               type='button'
               aria-label='Toggle menu'
-              id='nav-toggle'>
+              id='nav-toggle'
+              onClick={() => setActive(!isActive)}>
               <svg
                 className={
                   isActive
-                    ? 'header__hamburger--btn ham hamRotate ham1 active'
-                    : 'header__hamburger--btn ham hamRotate ham1'
+                    ? 'header__hamburger--btn ham hamRotate ham1'
+                    : 'header__hamburger--btn ham hamRotate ham1 active'
                 }
-                viewBox='0 0 100 100'
-                onClick={handleToggle}>
+                viewBox='0 0 100 100'>
                 <path
                   className='line top'
                   d='m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40'
@@ -67,7 +72,7 @@ const Header = (props) => {
         ) : null}
       </div>
 
-      {isMenu ? (
+      {isDesktop && isMenu ? (
         <ul className='menu' id='menu'>
           <li className='menu__item'>
             <Link to='/paradas'>Paradas</Link>
@@ -114,7 +119,59 @@ const Header = (props) => {
             <LogoutButton onClick={logout} />
           </li>
         </ul>
-      ) : null}
+      ) : (
+        <>
+          {isMenu ? (
+            <ul className={isActive ? 'menu menu--visibility' : 'menu'} id='menu'>
+              <li className='menu__item'>
+                <Link to='/paradas'>Paradas</Link>
+              </li>
+              <li className='menu__item'>
+                <Link to='/unidades'>Unidades</Link>
+              </li>
+              <li className='menu__item'>
+                <Link to='/conductores'>Conductores</Link>
+              </li>
+              {localStorage.getItem('role') === 'admin' ||
+              localStorage.getItem('role') === 'hero' ? (
+                <li className='menu__item'>
+                  <Link to='/admins'>Administradores</Link>
+                </li>
+              ) : null}
+              <li className='menu__item'>
+                <Link to='/perfil'>Perfil</Link>
+              </li>
+              <li className='menu__item'>
+                <Link
+                  className='menu__logout--svg'
+                  onClick={logout}
+                  to='/inicia-sesion'
+                  title='Cerrar sesión'>
+                  <svg
+                    className='icon--24 icon--gray'
+                    viewBox='0 0 72 72'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'>
+                    <path
+                      d='M45 9H17C15.8954 9 15 9.89543 15 11V61C15 62.1046 15.8954 63 17 63H45'
+                      strokeWidth='6'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M57 36L45 24M57 36L45 48M57 36H27'
+                      strokeWidth='6'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </Link>
+                <LogoutButton onClick={logout} />
+              </li>
+            </ul>
+          ) : null}
+        </>
+      )}
     </header>
   );
 };
