@@ -18,14 +18,12 @@ class UsersService {
 	}
 
 	/**
-	 * Encuentra el usuario con el email proporcionado
-	 * @param {string} email - email del usuario
-	 * @returns {Object} - Objeto con el usuario encontrado
+	 * Encuentra el usuario con el id proporcionado
+	 * @param {number} id - id del usuario
+	 * @returns {Object} - Objeto con el usuario
 	 */
-	async findByEmail(email) {
-		const user = await models.User.findOne({
-			where: { email },
-		});
+	async findOne(id) {
+		const user = await models.User.findByPk(id);
 
 		if (!user) {
 			throw boom.notFound('usuario no encontrado');
@@ -53,16 +51,19 @@ class UsersService {
 	}
 
 	/**
-	 * Encuentra el usuario con el id proporcionado
-	 * @param {number} id - id del usuario
-	 * @returns {Object} - Objeto con el usuario
+	 * Encuentra el usuario con el email proporcionado
+	 * @param {string} email - email del usuario
+	 * @returns {Object} - Objeto con el usuario encontrado
 	 */
-	async findOne(id) {
-		const user = await models.User.findByPk(id);
+	async findByEmail(email) {
+		const user = await models.User.findOne({
+			where: { email },
+		});
 
 		if (!user) {
 			throw boom.notFound('usuario no encontrado');
 		}
+
 		return user;
 	}
 
