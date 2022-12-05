@@ -11,7 +11,7 @@ const service = new AuthService();
  * y firma un token JWT con la informacion necesaria del usuario
  * para definir su rol */
 router.post(
-	'/iniciar-sesion',
+	'/login',
 	passport.authenticate('local', { session: false }),
 	async (req, res, next) => {
 		try {
@@ -27,7 +27,7 @@ router.post(
  * Ruta de recuperacion de contraseña
  * Envia un correo con el link para cambiar la contraseña
  */
-router.post('/recuperar', async (req, res, next) => {
+router.post('/recover', async (req, res, next) => {
 	try {
 		const { email } = req.body;
 		const response = await service.sendRecovery(email);
@@ -41,7 +41,7 @@ router.post('/recuperar', async (req, res, next) => {
  * Ruta de cambio de contraseña
  * Recupera la contraseña con el correo
  */
-router.post('/cambiar-contra', async (req, res, next) => {
+router.post('/change-password', async (req, res, next) => {
 	try {
 		const { token, newPassword } = req.body;
 		const response = await service.changePassword(token, newPassword);
