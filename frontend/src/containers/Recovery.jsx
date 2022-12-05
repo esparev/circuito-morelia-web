@@ -27,7 +27,7 @@ const Recovery = () => {
     await axios
       .post(url, data)
       .then((res) => {
-        window.location.href = '/correo-enviado';
+        window.location.href = '/#/correo-enviado';
       })
       .catch((error) => {
         if (error) {

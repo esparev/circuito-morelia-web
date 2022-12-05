@@ -30,7 +30,7 @@ const Signup = () => {
     await axios
       .post(url, data)
       .then((res) => {
-        window.location.href = '/inicia-sesion';
+        window.location.href = '/#/inicia-sesion';
       })
       .catch((error) => {
         if (error) {

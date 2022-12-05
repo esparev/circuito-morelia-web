@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import Layout from '@containers/Layout';
 import Login from '@containers/Login';
 import Signup from '@containers/Signup';
@@ -18,7 +18,7 @@ import Profile from '@containers/Profile';
 
 const App = ({ isLogged }) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout isLogged={isLogged}>
         <Switch>
           <Route exact path='/' component={isLogged ? Home : Login} />
@@ -37,7 +37,7 @@ const App = ({ isLogged }) => {
           <Route exact path='/recuperar' component={ChangePassword} />
         </Switch>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

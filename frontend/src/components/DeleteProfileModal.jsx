@@ -25,7 +25,7 @@ const DeleteProfileModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-            window.location.href = '/inicia-sesion';
+            window.location.href = '/#/inicia-sesion';
           }, 500);
         }, 5000);
       })

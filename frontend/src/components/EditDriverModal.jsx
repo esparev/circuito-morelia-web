@@ -43,7 +43,7 @@ const EditDriverModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-            window.location.href = data.slug;
+            window.location.href = `/#/${data.slug}`;
           }, 100);
         }, 3000);
       })

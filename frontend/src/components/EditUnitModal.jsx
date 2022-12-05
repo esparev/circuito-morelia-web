@@ -40,7 +40,7 @@ const EditUnitModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-            window.location.href = data.number;
+            window.location.href = `/#/${data.number}`;
           }, 100);
         }, 3000);
       })

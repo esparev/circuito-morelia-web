@@ -97,7 +97,7 @@ class AuthService {
 
 		const payload = { sub: user.id };
 		const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15m' });
-		const link = `http://localhost:3006/recuperar?token=${token}`;
+		const link = `https://circuito-morelia.netlify.app/#/recuperar?token=${token}`;
 		await service.update(user.slug, { recoveryToken: token });
 
 		// Envia el correo con el objeto de transporte

@@ -41,7 +41,7 @@ const ChangePassword = () => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-            window.location.href = '/inicia-sesion';
+            window.location.href = '/#/inicia-sesion';
           }, 100);
         }, 3000);
       })
