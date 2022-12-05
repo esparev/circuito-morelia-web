@@ -74,24 +74,24 @@ const Header = (props) => {
 
       {isDesktop && isMenu ? (
         <ul className='menu' id='menu'>
-          <li className='menu__item'>
+          <li className='menu__item' onClick={() => setActive(!isActive)}>
             <Link to='/paradas'>Paradas</Link>
           </li>
-          <li className='menu__item'>
+          <li className='menu__item' onClick={() => setActive(!isActive)}>
             <Link to='/unidades'>Unidades</Link>
           </li>
-          <li className='menu__item'>
+          <li className='menu__item' onClick={() => setActive(!isActive)}>
             <Link to='/conductores'>Conductores</Link>
           </li>
           {localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'hero' ? (
-            <li className='menu__item'>
+            <li className='menu__item' onClick={() => setActive(!isActive)}>
               <Link to='/admins'>Administradores</Link>
             </li>
           ) : null}
-          <li className='menu__item'>
+          <li className='menu__item' onClick={() => setActive(!isActive)}>
             <Link to='/perfil'>Perfil</Link>
           </li>
-          <li className='menu__item'>
+          <li className='menu__item' onClick={() => setActive(!isActive)}>
             <Link
               className='menu__logout--svg'
               onClick={logout}
@@ -123,25 +123,25 @@ const Header = (props) => {
         <>
           {isMenu ? (
             <ul className={isActive ? 'menu menu--visibility' : 'menu'} id='menu'>
-              <li className='menu__item'>
+              <li className='menu__item' onClick={() => setActive(!isActive)}>
                 <Link to='/paradas'>Paradas</Link>
               </li>
-              <li className='menu__item'>
+              <li className='menu__item' onClick={() => setActive(!isActive)}>
                 <Link to='/unidades'>Unidades</Link>
               </li>
-              <li className='menu__item'>
+              <li className='menu__item' onClick={() => setActive(!isActive)}>
                 <Link to='/conductores'>Conductores</Link>
               </li>
               {localStorage.getItem('role') === 'admin' ||
               localStorage.getItem('role') === 'hero' ? (
-                <li className='menu__item'>
+                <li className='menu__item' onClick={() => setActive(!isActive)}>
                   <Link to='/admins'>Administradores</Link>
                 </li>
               ) : null}
-              <li className='menu__item'>
+              <li className='menu__item' onClick={() => setActive(!isActive)}>
                 <Link to='/perfil'>Perfil</Link>
               </li>
-              <li className='menu__item'>
+              <li className='menu__item' onClick={() => setActive(!isActive)}>
                 <Link
                   className='menu__logout--svg'
                   onClick={logout}
