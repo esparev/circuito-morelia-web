@@ -39,7 +39,7 @@ const Login = () => {
         localStorage.setItem('token', res.data.token);
 
         // navigate('/');
-        window.location.href = '/#/';
+        window.location.href = '/';
       })
       .catch((error) => {
         if (error) {
