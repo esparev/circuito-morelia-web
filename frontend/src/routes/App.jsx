@@ -3,6 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '@containers/Layout';
 import Login from '@containers/Login';
 import Signup from '@containers/Signup';
+import Recovery from '@containers/Recovery';
+import EmailSent from '@containers/EmailSent';
+import ChangePassword from '@containers/ChangePassword';
 import Home from '@containers/Home';
 import Admins from '@containers/Admins';
 import Admin from '@containers/Admin';
@@ -29,6 +32,9 @@ const App = ({ isLogged }) => {
           <Route exact path='/perfil' component={isLogged ? Profile : Login} />
           <Route exact path='/inicia-sesion' component={Login} />
           <Route exact path='/crear-cuenta' component={Signup} />
+          <Route exact path='/recuperar-contraseña' component={Recovery} />
+          <Route exact path='/correo-enviado' component={EmailSent} />
+          <Route exact path='/recuperar' component={ChangePassword} />
         </Switch>
       </Layout>
     </BrowserRouter>
