@@ -59,15 +59,14 @@ class AuthService {
 		};
 	}
 
-
 	/**
-   * Envia un correo al correo del usuario con
-   * el objeto de transporte de nodemailer
+	 * Envia un correo al correo del usuario con
+	 * el objeto de transporte de nodemailer
 	 * @param {*} infoMail - correo del usuario
 	 * @returns - mensaje de respuesta
 	 */
 	async sendMail(infoMail) {
-    // Crea un objeto de transporte reutilizable usando el transporte SMTP predeterminado
+		// Crea un objeto de transporte reutilizable usando el transporte SMTP predeterminado
 		const transporter = nodemailer.createTransport({
 			host: 'smtp.gmail.com',
 			secure: true, // verdadera para 465, falsa para otros puertos
@@ -77,13 +76,14 @@ class AuthService {
 				pass: config.smtpPassword,
 			},
 		});
-    // Envia el correo con el objeto de transporte definido
+
+		// Envia el correo con el objeto de transporte definido
 		await transporter.sendMail(infoMail);
 		return { message: 'mail enviado' };
 	}
 
 	/**
-   * Provee informacion al correo
+	 * Provee informacion al correo
 	 * @param {*} email - correo del usuario
 	 * @returns - envio de correo
 	 */
@@ -98,7 +98,7 @@ class AuthService {
 		const payload = { sub: user.id };
 		const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15m' });
 		const link = `http://localhost:3006/recuperar?token=${token}`;
-		await service.update(user.id, { recoveryToken: token });
+		await service.update(user.slug, { recoveryToken: token });
 
 		// Envia el correo con el objeto de transporte
 		const mail = {
@@ -118,12 +118,12 @@ class AuthService {
 		return response;
 	}
 
-  /**
-   * Cambia la contraseña del usuario con el token de recuperacion
-   * @param {*} token - token de recuperacion
-   * @param {*} newPassword - nueva contraseña
-   * @returns - mensaje de respuesta
-   */
+	/**
+	 * Cambia la contraseña del usuario con el token de recuperacion
+	 * @param {*} token - token de recuperacion
+	 * @param {*} newPassword - nueva contraseña
+	 * @returns - mensaje de respuesta
+	 */
 	async changePassword(token, newPassword) {
 		try {
 			const payload = jwt.verify(token, config.jwtSecret);
@@ -134,7 +134,7 @@ class AuthService {
 			}
 
 			const hash = await bcrypt.hash(newPassword, 13);
-			await service.update(user.id, { recoveryToken: null, password: hash });
+			await service.update(user.slug, { recoveryToken: null, password: hash });
 
 			return { message: 'Contraseña modificada' };
 		} catch (error) {
