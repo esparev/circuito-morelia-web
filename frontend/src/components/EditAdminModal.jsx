@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SuccessAlert from '@components/SuccessAlert';
 import ErrorAlert from '@components/ErrorAlert';
 import axios from 'axios';
-import slugify from 'slugify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { authConfig } from '@constants';
@@ -43,7 +42,7 @@ const EditAdminModal = (props) => {
           document.querySelector('.alert__container').classList.add('animate__slideOutUp');
           setTimeout(() => {
             root.unmount();
-            window.location.href = `/#/${data.slug}`;
+            window.location.reload();
           }, 100);
         }, 3000);
       })
@@ -67,8 +66,6 @@ const EditAdminModal = (props) => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (data) => {
-      const regex = /\s+/g;
-      data.slug = slugify(data.name.replace(regex, '-'), { lower: true });
       editAdmin(`${envConfig.apiUrl}/users/${slug}`, data, authConfig);
     },
   });

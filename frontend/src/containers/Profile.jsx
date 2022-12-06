@@ -7,7 +7,6 @@ import DeleteButton from '@components/DeleteButton';
 import DeleteProfileModal from '@components/DeleteProfileModal';
 import useGetUser from '@hooks/useGetUser';
 import axios from 'axios';
-import slugify from 'slugify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { authConfig } from '@constants';
@@ -70,9 +69,6 @@ const Profile = () => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (data) => {
-      const regex = /\s+/g;
-      data.slug = slugify(data.name.replace(regex, '-'), { lower: true });
-      localStorage.setItem('slug', data.slug);
       editProfile(`${envConfig.apiUrl}/users/${slug}`, data, authConfig);
     },
   });
