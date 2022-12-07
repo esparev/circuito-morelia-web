@@ -79,6 +79,8 @@
 .login__form--btn {
   width: 100%;
   padding: 2px;
+  display: flex;
+  justify-content: center;
   border: none;
   border-radius: 8px;
   padding: 8px;

@@ -51,6 +51,29 @@ main {
   padding-left: 68px;
   padding-right: 68px;
 }
+.spinner {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  margin-left: -4px;
+  color: var(--white);
+  animation: spin 1s linear infinite;
+}
+.spinner--circle {
+  opacity: 0.25;
+}
+.spinner--path {
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 @media (max-width: 768px) {
   .hero {

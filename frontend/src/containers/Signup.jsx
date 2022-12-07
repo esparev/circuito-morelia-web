@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import slugify from 'slugify';
@@ -9,6 +9,9 @@ import CircuitoMorelia from '@img/Circuito_Morelia.png';
 import '@styles/Login.css';
 
 const Signup = () => {
+  const [error, setError] = useState(false);
+  const [signing, setSigning] = useState(false);
+
   useEffect(() => {
     document.title = 'Crear Cuenta';
     window.scrollTo(0, 0);
@@ -33,9 +36,8 @@ const Signup = () => {
         window.location.href = '/#/inicia-sesion';
       })
       .catch((error) => {
-        if (error) {
-          //! const wrongSignup
-        }
+        setError(true);
+        setSigning(false);
       });
   };
 
@@ -44,6 +46,7 @@ const Signup = () => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: (data) => {
+      setSigning(true);
       const regex = /\s+/g;
       data.slug = slugify(data.name.replace(regex, '-'), { lower: true });
       signup(`${envConfig.apiUrl}/users`, data);
@@ -104,8 +107,36 @@ const Signup = () => {
           <span className='login__form-field--err'>{formik.errors.password}</span>
         </div>
         <button className='login__form--btn' id='send-btn' type='submit'>
-          Crear cuenta
+          {signing ? (
+            <>
+              <svg
+                className='spinner'
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'>
+                <circle
+                  className='spinner--circle'
+                  cx='12'
+                  cy='12'
+                  r='10'
+                  stroke='currentColor'
+                  stroke-width='4'></circle>
+                <path
+                  className='spinner--path'
+                  fill='currentColor'
+                  d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+              </svg>
+              Procesando...
+            </>
+          ) : (
+            'Crear cuenta'
+          )}
         </button>
+        {error ? (
+          <span className='login__form-field--err'>
+            Hubo un error al crear tu cuenta, inténtalo más tarde
+          </span>
+        ) : null}
         <p className='login__form--question'>
           ¿Ya tienes una cuenta?{' '}
           <Link className='login__form--question-btn' to='/inicia-sesion'>
