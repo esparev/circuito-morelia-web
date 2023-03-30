@@ -109,7 +109,7 @@ router.delete(
 		try {
 			const { id } = req.params;
 			const deletedStop = await service.delete(id);
-			res.status(200).json({ deletedStop, message: 'unidad eliminada' });
+			res.status(200).json({ deletedStop, message: 'parada eliminada' });
 		} catch (error) {
 			next(error);
 		}
