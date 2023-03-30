@@ -4,7 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< Updated upstream
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+    "dev": "nodemon -L index.js",
+    "start": "node index.js",
+    "lint": "eslint",
+    "migrations:generate": "sequelize-cli migration:generate --name",
+    "migrations:run": "sequelize-cli db:migrate",
+    "migrations:revert": "sequelize-cli db:migrate:undo",
+    "migrations:delete": "sequelize-cli db:migrate:undo:all",
+    "seed:generate": "sequelize-cli seed:generate --name",
+    "seed:all": "sequelize-cli db:seed:all",
+    "seed:undo": "sequelize-cli db:seed:undo:all",
+    "api": "sequelize-cli db:migrate && sequelize-cli db:seed:all && nodemon index.js"
+>>>>>>> Stashed changes
   },
   "keywords": [],
   "author": "",
