@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '@components/LogoutButton';
 import LogoCircuito from '@img/Circuito_Morelia_Logo.png';
 import '@styles/Header.css';
@@ -37,9 +37,9 @@ const Header = (props) => {
     <header className='header'>
       <div className='header__buttons'>
         <figure className='header__figure'>
-          <Link to='/'>
+          <NavLink to='/'>
             <img className='header__figure--img' src={LogoCircuito} alt='Logo Circuito Morelia' />
-          </Link>
+          </NavLink>
         </figure>
 
         {isMenu ? (
@@ -75,24 +75,36 @@ const Header = (props) => {
       {isDesktop && isMenu ? (
         <ul className='menu' id='menu'>
           <li className='menu__item' onClick={() => setActive(!isActive)}>
-            <Link to='/paradas'>Paradas</Link>
+            <NavLink className={(isActive) => (isActive ? 'menu__item--link' : '')} to='/paradas'>
+              Paradas
+            </NavLink>
           </li>
           <li className='menu__item' onClick={() => setActive(!isActive)}>
-            <Link to='/unidades'>Unidades</Link>
+            <NavLink className={(isActive) => (isActive ? 'menu__item--link' : '')} to='/unidades'>
+              Unidades
+            </NavLink>
           </li>
           <li className='menu__item' onClick={() => setActive(!isActive)}>
-            <Link to='/conductores'>Conductores</Link>
+            <NavLink
+              className={(isActive) => (isActive ? 'menu__item--link' : '')}
+              to='/conductores'>
+              Conductores
+            </NavLink>
           </li>
           {localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'hero' ? (
             <li className='menu__item' onClick={() => setActive(!isActive)}>
-              <Link to='/admins'>Administradores</Link>
+              <NavLink className={(isActive) => (isActive ? 'menu__item--link' : '')} to='/admins'>
+                Administradores
+              </NavLink>
             </li>
           ) : null}
           <li className='menu__item' onClick={() => setActive(!isActive)}>
-            <Link to='/perfil'>Perfil</Link>
+            <NavLink className={(isActive) => (isActive ? 'menu__item--link' : '')} to='/perfil'>
+              Perfil
+            </NavLink>
           </li>
           <li className='menu__item' onClick={() => setActive(!isActive)}>
-            <Link
+            <NavLink
               className='menu__logout--svg'
               onClick={logout}
               to='/inicia-sesion'
@@ -115,7 +127,7 @@ const Header = (props) => {
                   strokeLinejoin='round'
                 />
               </svg>
-            </Link>
+            </NavLink>
             <LogoutButton onClick={logout} />
           </li>
         </ul>
@@ -124,25 +136,25 @@ const Header = (props) => {
           {isMenu ? (
             <ul className={isActive ? 'menu menu--visibility' : 'menu'} id='menu'>
               <li className='menu__item' onClick={() => setActive(!isActive)}>
-                <Link to='/paradas'>Paradas</Link>
+                <NavLink to='/paradas'>Paradas</NavLink>
               </li>
               <li className='menu__item' onClick={() => setActive(!isActive)}>
-                <Link to='/unidades'>Unidades</Link>
+                <NavLink to='/unidades'>Unidades</NavLink>
               </li>
               <li className='menu__item' onClick={() => setActive(!isActive)}>
-                <Link to='/conductores'>Conductores</Link>
+                <NavLink to='/conductores'>Conductores</NavLink>
               </li>
               {localStorage.getItem('role') === 'admin' ||
               localStorage.getItem('role') === 'hero' ? (
                 <li className='menu__item' onClick={() => setActive(!isActive)}>
-                  <Link to='/admins'>Administradores</Link>
+                  <NavLink to='/admins'>Administradores</NavLink>
                 </li>
               ) : null}
               <li className='menu__item' onClick={() => setActive(!isActive)}>
-                <Link to='/perfil'>Perfil</Link>
+                <NavLink to='/perfil'>Perfil</NavLink>
               </li>
               <li className='menu__item' onClick={() => setActive(!isActive)}>
-                <Link
+                <NavLink
                   className='menu__logout--svg'
                   onClick={logout}
                   to='/inicia-sesion'
@@ -165,7 +177,7 @@ const Header = (props) => {
                       strokeLinejoin='round'
                     />
                   </svg>
-                </Link>
+                </NavLink>
                 <LogoutButton onClick={logout} />
               </li>
             </ul>

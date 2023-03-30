@@ -82,6 +82,9 @@
   font-weight: var(--medium);
   color: var(--gray-300);
 }
+.menu__item .menu__item--link {
+  color: var(--black);
+}
 .menu__item a:hover {
   text-decoration: underline;
 }
