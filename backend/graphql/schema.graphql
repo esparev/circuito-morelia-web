@@ -1,4 +1,12 @@
 type Query {
-	hello: String
-	getPerson(name: String, age: Int): String
+	stop(id: ID!): Stop
+	stops: [Stop!]!
+}
+
+type Stop {
+	id: ID!
+	name: String!
+	latitude: Float!
+	longitude: Float!
+	wayDirection: String!
 }
