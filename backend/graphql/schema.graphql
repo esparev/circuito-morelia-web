@@ -1,6 +1,10 @@
 type Query {
 	stop(id: ID!): Stop
 	stops: [Stop!]!
+	unit(id: ID!): Unit
+	units: [Unit!]!
+	user(id: ID!): User
+	users: [User!]!
 }
 
 type Stop {
@@ -9,4 +13,24 @@ type Stop {
 	latitude: Float!
 	longitude: Float!
 	wayDirection: String!
+}
+
+type Unit {
+	id: ID!
+	name: String!
+	number: Int!
+	distanceInMins: Int!
+	distanceInMts: Int!
+	wayDirection: String!
+	departureTime: String!
+	arrivalTime: String!
+}
+
+type User {
+	id: ID!
+	slug: String!
+	name: String!
+	email: String!
+	password: String!
+	role: String!
 }
