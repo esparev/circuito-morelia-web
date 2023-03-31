@@ -6,15 +6,11 @@ const service = new UsersService();
  * Encuentra todos las usuarios en el array de objetos
  * @returns {Array} - Array con todos las usuarios
  */
-const users = async (_, { role }) => {
-	const users = await service.find();
-
+const users = (_, { role }) => {
 	if (role) {
-		const filteredUsers = users.filter((user) => user.role === role);
-		return filteredUsers;
+		return users.filter((user) => user.role === role);
 	}
-
-	return users;
+	return service.find();
 };
 
 /**
@@ -22,14 +18,8 @@ const users = async (_, { role }) => {
  * @param {number} id - id de la usuario
  * @returns {Object} - Objeto con la usuario
  */
-const user = async (_, { id }) => {
-	const user = await service.findOne(id);
-
-	if (!user) {
-		throw boom.notFound('usuario no encontrado');
-	}
-
-	return user;
+const user = (_, { id }) => {
+	return service.findOne(id);
 };
 
 const createUser = (_, { dto }) => {

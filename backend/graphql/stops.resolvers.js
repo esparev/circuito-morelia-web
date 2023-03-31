@@ -6,9 +6,8 @@ const service = new StopsService();
  * Encuentra todos las paradas en el array de objetos
  * @returns {Array} - Array con todos las paradas
  */
-const stops = async () => {
-	const stops = await service.find();
-	return stops;
+const stops = () => {
+	return service.find();
 };
 
 /**
@@ -16,14 +15,8 @@ const stops = async () => {
  * @param {number} id - id de la parada
  * @returns {Object} - Objeto con la parada
  */
-const stop = async (_, { id }) => {
-	const stop = await service.findOne(id);
-
-	if (!stop) {
-		throw boom.notFound('parada no encontrada');
-	}
-
-	return stop;
+const stop = (_, { id }) => {
+	return service.findOne(id);
 };
 
 const createStop = (_, { dto }) => {

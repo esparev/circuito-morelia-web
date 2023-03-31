@@ -6,9 +6,8 @@ const service = new UnitsService();
  * Encuentra todos las unidades en el array de objetos
  * @returns {Array} - Array con todos las unidades
  */
-const units = async () => {
-	const units = await service.find();
-	return units;
+const units = () => {
+	return service.find();
 };
 
 /**
@@ -16,14 +15,8 @@ const units = async () => {
  * @param {number} id - id de la unidad
  * @returns {Object} - Objeto con la unidad
  */
-const unit = async (_, { id }) => {
-	const unit = await service.findOne(id);
-
-	if (!unit) {
-		throw boom.notFound('unidad no encontrada');
-	}
-
-	return unit;
+const unit = (_, { id }) => {
+	return service.findOne(id);
 };
 
 const createUnit = (_, { dto }) => {
