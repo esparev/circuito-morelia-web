@@ -4,7 +4,7 @@ const service = new UsersService();
 
 /**
  * Encuentra todos las usuarios en el array de objetos
- * @returns {Array} - Array con todos las usuarios
+ * @returns {Array} Array con todos las usuarios
  */
 const users = (_, { role }) => {
 	if (role) {
@@ -16,20 +16,36 @@ const users = (_, { role }) => {
 /**
  * Encuentra la usuario con el id proporcionado
  * @param {number} id - id de la usuario
- * @returns {Object} - Objeto con la usuario
+ * @returns {Object} Objeto con la usuario
  */
 const user = (_, { id }) => {
 	return service.findOne(id);
 };
 
+/**
+ * Crea un nuevo usuario
+ * @param {Object} dto - Objeto con los datos de el usuario
+ * @returns {Object} Objeto con el usuario
+ */
 const createUser = (_, { dto }) => {
 	return service.create(dto);
 };
 
+/**
+ * Actualiza el usuario con el id proporcionado
+ * @param {number} id - id de el usuario
+ * @param {Object} dto - Objeto con los datos de el usuario
+ * @returns {Object} Objeto con el usuario
+ */
 const updateUser = (_, { id, dto }) => {
 	return service.update(id, dto);
 };
 
+/**
+ * Elimina el usuario con el id proporcionado
+ * @param {number} id - id de el usuario
+ * @returns {number} id de el usuario eliminado
+ */
 const deleteUser = async (_, { id }) => {
 	await service.delete(id);
 	return id;
