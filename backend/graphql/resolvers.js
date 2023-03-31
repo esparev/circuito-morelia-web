@@ -1,6 +1,24 @@
-const { stop, stops } = require('./stops.resolvers');
-const { unit, units } = require('./units.resolvers');
-const { user, users } = require('./users.resolvers');
+const {
+	stop,
+	stops,
+	createStop,
+	updateStop,
+	deleteStop,
+} = require('./stops.resolvers');
+const {
+	unit,
+	units,
+	createUnit,
+	updateUnit,
+	deleteUnit,
+} = require('./units.resolvers');
+const {
+	user,
+	users,
+	createUser,
+	updateUser,
+	deleteUser,
+} = require('./users.resolvers');
 
 /**
  * Resolvers de GraphQL
@@ -13,6 +31,17 @@ const resolvers = {
 		unit,
 		users,
 		user,
+	},
+	Mutation: {
+		createStop,
+		updateStop,
+		deleteStop,
+		createUnit,
+		updateUnit,
+		deleteUnit,
+		createUser,
+		updateUser,
+		deleteUser,
 	},
 };
 

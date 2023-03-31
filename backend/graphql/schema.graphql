@@ -7,6 +7,18 @@ type Query {
 	users(role: String): [User!]!
 }
 
+type Mutation {
+	createStop(dto: CreateStopDTO!): Stop
+	updateStop(id: ID!, dto: UpdateStopDTO!): Stop
+	deleteStop(id: ID!): ID
+	createUnit(dto: CreateUnitDTO!): Unit
+	updateUnit(id: ID!, dto: UpdateUnitDTO!): Unit
+	deleteUnit(id: ID!): ID
+	createUser(dto: CreateUserDTO!): User
+	updateUser(id: ID!, dto: UpdateUserDTO!): User
+	deleteUser(id: ID!): ID
+}
+
 type Stop {
 	id: ID!
 	name: String!
@@ -33,4 +45,61 @@ type User {
 	email: String!
 	password: String!
 	role: String!
+}
+
+#* =================
+#* INPUTS
+#* =================
+
+#? STOP
+input CreateStopDTO {
+	name: String!
+	latitude: Float!
+	longitude: Float!
+	wayDirection: String!
+}
+
+input UpdateStopDTO {
+	name: String
+	latitude: Float
+	longitude: Float
+	wayDirection: String
+}
+
+#? UNIT
+input CreateUnitDTO {
+	number: Int!
+	distanceInMins: Int
+	distanceInMts: Int
+	wayDirection: String
+	departureTime: String
+	arrivalTime: String
+}
+
+input UpdateUnitDTO {
+	number: Int
+	distanceInMins: Int
+	distanceInMts: Int
+	wayDirection: String
+	departureTime: String
+	arrivalTime: String
+}
+
+#? USER
+input CreateUserDTO {
+	name: String!
+	email: String!
+	password: String!
+	role: String!
+	image: String
+	recoveryToken: String
+}
+
+input UpdateUserDTO {
+	name: String
+	email: String
+	password: String
+	role: String
+	image: String
+	recoveryToken: String
 }

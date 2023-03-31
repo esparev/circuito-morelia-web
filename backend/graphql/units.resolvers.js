@@ -26,6 +26,17 @@ const unit = async (_, { id }) => {
 	return unit;
 };
 
-const addUnit = (_, args) => {};
+const createUnit = (_, { dto }) => {
+	return service.create(dto);
+};
 
-module.exports = { unit, units, addUnit };
+const updateUnit = (_, { id, dto }) => {
+	return service.update(id, dto);
+};
+
+const deleteUnit = async (_, { id }) => {
+	await service.delete(id);
+	return id;
+};
+
+module.exports = { unit, units, createUnit, updateUnit, deleteUnit };

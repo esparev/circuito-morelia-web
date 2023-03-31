@@ -26,6 +26,17 @@ const stop = async (_, { id }) => {
 	return stop;
 };
 
-const addStop = (_, args) => {};
+const createStop = (_, { dto }) => {
+	return service.create(dto);
+};
 
-module.exports = { stop, stops, addStop };
+const updateStop = (_, { id, dto }) => {
+	return service.update(id, dto);
+};
+
+const deleteStop = async (_, { id }) => {
+	await service.delete(id);
+	return id;
+};
+
+module.exports = { stop, stops, createStop, updateStop, deleteStop };

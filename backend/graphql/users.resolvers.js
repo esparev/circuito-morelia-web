@@ -32,6 +32,17 @@ const user = async (_, { id }) => {
 	return user;
 };
 
-const addUser = (_, args) => {};
+const createUser = (_, { dto }) => {
+	return service.create(dto);
+};
 
-module.exports = { user, users, addUser };
+const updateUser = (_, { id, dto }) => {
+	return service.update(id, dto);
+};
+
+const deleteUser = async (_, { id }) => {
+	await service.delete(id);
+	return id;
+};
+
+module.exports = { user, users, createUser, updateUser, deleteUser };
