@@ -4,7 +4,7 @@ type Query {
 	unit(id: ID!): Unit
 	units: [Unit!]!
 	user(id: ID!): User
-	users: [User!]!
+	users(role: String): [User!]!
 }
 
 type Stop {

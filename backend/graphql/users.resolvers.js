@@ -6,8 +6,14 @@ const service = new UsersService();
  * Encuentra todos las usuarios en el array de objetos
  * @returns {Array} - Array con todos las usuarios
  */
-const users = async () => {
+const users = async (_, { role }) => {
 	const users = await service.find();
+
+	if (role) {
+		const filteredUsers = users.filter((user) => user.role === role);
+		return filteredUsers;
+	}
+
 	return users;
 };
 
