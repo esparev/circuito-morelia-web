@@ -1,4 +1,3 @@
-const boom = require('@hapi/boom');
 const UnitsService = require('../services/units.service');
 const service = new UnitsService();
 
@@ -11,12 +10,12 @@ const units = () => {
 };
 
 /**
- * Encuentra la unidad con el id proporcionado
- * @param {number} id - id de la unidad
+ * Encuentra la unidad con el numero proporcionado
+ * @param {number} numero - numero de la unidad
  * @returns {Object} Objeto con la unidad
  */
-const unit = (_, { id }) => {
-	return service.findOne(id);
+const unit = (_, { number }) => {
+	return service.findByNumber(number);
 };
 
 /**

@@ -1,9 +1,9 @@
 type Query {
 	stop(id: ID!): Stop
 	stops: [Stop!]!
-	unit(id: ID!): Unit
+	unit(number: Int!): Unit
 	units: [Unit!]!
-	user(id: ID!): User
+	user(slug: String!): User
 	users(role: String): [User!]!
 }
 
@@ -35,6 +35,7 @@ type Unit {
 	wayDirection: String!
 	departureTime: String!
 	arrivalTime: String!
+	driver: [User!]
 }
 
 type User {
@@ -44,6 +45,7 @@ type User {
 	email: String!
 	password: String!
 	role: String!
+	unit: [Unit!]
 }
 
 #* =================
