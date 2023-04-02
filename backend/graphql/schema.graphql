@@ -29,7 +29,6 @@ type Stop {
 
 type Unit {
 	id: ID!
-	name: String!
 	number: Int!
 	distanceInMins: Int!
 	distanceInMts: Int!
