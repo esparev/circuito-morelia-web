@@ -8,6 +8,7 @@ type Query {
 }
 
 type Mutation {
+	login(email: String!, password: String!): AuthResponse
 	createStop(dto: CreateStopDTO!): Stop
 	updateStop(id: ID!, dto: UpdateStopDTO!): Stop
 	deleteStop(id: ID!): ID
@@ -46,6 +47,11 @@ type User {
 	password: String!
 	role: String!
 	unit: [Unit!]
+}
+
+type AuthResponse {
+	token: String!
+	user: User!
 }
 
 #* =================

@@ -19,6 +19,7 @@ const {
 	updateUser,
 	deleteUser,
 } = require('./users.resolvers');
+const {login} = require('./auth.resolvers');
 
 /**
  * Resolvers de GraphQL
@@ -33,6 +34,7 @@ const resolvers = {
 		user,
 	},
 	Mutation: {
+		login,
 		createStop,
 		updateStop,
 		deleteStop,
