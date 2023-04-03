@@ -24,7 +24,13 @@ const stop = (_, { id }) => {
  * @param {Object} dto - Objeto con los datos de la parada
  * @returns {Object} Objeto con la parada
  */
-const createStop = (_, { dto }) => {
+const createStop = async (_, { dto }, context) => {
+	const { user } = await context.authenticate('jwt', { session: false });
+
+	if (!user) {
+		throw boom.unauthorized('No autorizado');
+	}
+
 	return service.create(dto);
 };
 
@@ -34,7 +40,13 @@ const createStop = (_, { dto }) => {
  * @param {Object} dto - Objeto con los datos de la parada
  * @returns {Object} Objeto con la parada
  */
-const updateStop = (_, { id, dto }) => {
+const updateStop = async (_, { id, dto }, context) => {
+	const { user } = await context.authenticate('jwt', { session: false });
+
+	if (!user) {
+		throw boom.unauthorized('No autorizado');
+	}
+
 	return service.update(id, dto);
 };
 
@@ -43,7 +55,13 @@ const updateStop = (_, { id, dto }) => {
  * @param {number} id - id de la parada
  * @returns {number} id de la parada eliminada
  */
-const deleteStop = async (_, { id }) => {
+const deleteStop = async (_, { id }, context) => {
+	const { user } = await context.authenticate('jwt', { session: false });
+
+	if (!user) {
+		throw boom.unauthorized('No autorizado');
+	}
+
 	await service.delete(id);
 	return id;
 };
