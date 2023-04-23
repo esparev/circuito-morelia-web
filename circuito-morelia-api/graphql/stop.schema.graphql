@@ -1,0 +1,37 @@
+type Query {
+	stop(id: ID!): Stop
+	stops: [Stop!]!
+}
+
+type Mutation {
+	createStop(dto: CreateStopDTO!): Stop
+	updateStop(id: ID!, dto: UpdateStopDTO!): Stop
+	deleteStop(id: ID!): ID
+}
+
+type Stop {
+	id: ID!
+	name: String!
+	latitude: Float!
+	longitude: Float!
+	wayDirection: String!
+}
+
+#* =================
+#* INPUTS
+#* =================
+
+#? STOP
+input CreateStopDTO {
+	name: String!
+	latitude: Float!
+	longitude: Float!
+	wayDirection: String!
+}
+
+input UpdateStopDTO {
+	name: String
+	latitude: Float
+	longitude: Float
+	wayDirection: String
+}

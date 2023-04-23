@@ -1,6 +1,4 @@
 type Query {
-	stop(id: ID!): Stop
-	stops: [Stop!]!
 	unit(number: Int!): Unit
 	units: [Unit!]!
 	user(slug: String!): User
@@ -9,23 +7,12 @@ type Query {
 
 type Mutation {
 	login(email: String!, password: String!): AuthResponse
-	createStop(dto: CreateStopDTO!): Stop
-	updateStop(id: ID!, dto: UpdateStopDTO!): Stop
-	deleteStop(id: ID!): ID
 	createUnit(dto: CreateUnitDTO!): Unit
 	updateUnit(id: ID!, dto: UpdateUnitDTO!): Unit
 	deleteUnit(id: ID!): ID
 	createUser(dto: CreateUserDTO!): User
 	updateUser(id: ID!, dto: UpdateUserDTO!): User
 	deleteUser(id: ID!): ID
-}
-
-type Stop {
-	id: ID!
-	name: String!
-	latitude: Float!
-	longitude: Float!
-	wayDirection: String!
 }
 
 type Unit {
@@ -57,21 +44,6 @@ type AuthResponse {
 #* =================
 #* INPUTS
 #* =================
-
-#? STOP
-input CreateStopDTO {
-	name: String!
-	latitude: Float!
-	longitude: Float!
-	wayDirection: String!
-}
-
-input UpdateStopDTO {
-	name: String
-	latitude: Float
-	longitude: Float
-	wayDirection: String
-}
 
 #? UNIT
 input CreateUnitDTO {
