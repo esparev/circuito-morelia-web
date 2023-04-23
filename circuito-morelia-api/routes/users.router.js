@@ -19,8 +19,15 @@ const {
  * @apiSuccess {Object[]} Lista de usuarios
  */
 router.get('/', async (req, res, next) => {
+	const { role } = req.query;
 	try {
 		const users = await service.find();
+
+		if (role) {
+			const filteredUsers = users.filter((user) => user.role === role);
+			return res.status(200).json(filteredUsers);
+		}
+
 		res.status(200).json(users);
 	} catch (error) {
 		next(error);

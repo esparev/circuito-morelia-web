@@ -1,5 +1,6 @@
 const express = require('express');
 const routerApi = require('./routes');
+const useGraphQL = require('./graphql');
 const passport = require('passport');
 
 require('./utils/auth');
@@ -24,6 +25,10 @@ app.use(passport.initialize());
 app.use(express.json());
 
 routerApi(app);
+(async () => {
+	await useGraphQL(app);
+})();
+
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);

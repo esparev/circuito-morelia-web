@@ -1,0 +1,84 @@
+type Query {
+	unit(number: Int!): Unit
+	units: [Unit!]!
+	user(slug: String!): User
+	users(role: String): [User!]!
+}
+
+type Mutation {
+	login(email: String!, password: String!): AuthResponse
+	createUnit(dto: CreateUnitDTO!): Unit
+	updateUnit(id: ID!, dto: UpdateUnitDTO!): Unit
+	deleteUnit(id: ID!): ID
+	createUser(dto: CreateUserDTO!): User
+	updateUser(id: ID!, dto: UpdateUserDTO!): User
+	deleteUser(id: ID!): ID
+}
+
+type Unit {
+	id: ID!
+	number: Int!
+	distanceInMins: Int!
+	distanceInMts: Int!
+	wayDirection: String!
+	departureTime: String!
+	arrivalTime: String!
+	driver: [User!]
+}
+
+type User {
+	id: ID!
+	slug: String!
+	name: String!
+	email: String!
+	password: String!
+	role: String!
+	unit: [Unit!]
+}
+
+type AuthResponse {
+	token: String!
+	user: User!
+}
+
+#* =================
+#* INPUTS
+#* =================
+
+#? UNIT
+input CreateUnitDTO {
+	number: Int!
+	distanceInMins: Int
+	distanceInMts: Int
+	wayDirection: String
+	departureTime: String
+	arrivalTime: String
+}
+
+input UpdateUnitDTO {
+	number: Int
+	distanceInMins: Int
+	distanceInMts: Int
+	wayDirection: String
+	departureTime: String
+	arrivalTime: String
+}
+
+#? USER
+input CreateUserDTO {
+	name: String!
+	email: String!
+	password: String!
+	role: String!
+	image: String
+	recoveryToken: String
+}
+
+input UpdateUserDTO {
+	name: String
+	email: String
+	password: String
+	role: String
+	image: String
+	recoveryToken: String
+}
